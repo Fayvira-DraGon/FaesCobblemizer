@@ -1,4 +1,4 @@
-# Cobblemizer: Cobblemon Customizer Mod (Fabric)
+# Fae's Cobblemizer: Port of Cobblemizer by Dragomordor
 
 Cobblemizer, formerly known as Cobblemaxer, is a Cobblemon 1.4.1 side mod designed to enhance the gameplay experience by offering items that allow players to manipulate various stats and aesthetic characteristics of Pokémon within the game.
 
