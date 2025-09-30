@@ -1,17 +1,13 @@
 package git.dragomordor.cobblemizer.fabric.item.custom;
 
-// import com.cobblemon.mod.common.api.pokemon.Natures;
-
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Nature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-// import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-// import com.cobblemon.mod.common.util.MiscUtilsKt.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +16,6 @@ public class NatureChangerItem extends PokemonUseItem {
   private final Nature nature;
 
   public NatureChangerItem(Nature nature) {
-    // super(new FabricItemSettings().maxCount(1));
     super(new Item.Settings().maxCount(1));
     this.nature = nature;
   }

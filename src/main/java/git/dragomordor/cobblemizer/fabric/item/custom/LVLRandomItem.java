@@ -3,7 +3,6 @@ package git.dragomordor.cobblemizer.fabric.item.custom;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-// import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -15,7 +14,6 @@ import java.util.Random;
 public class LVLRandomItem extends PokemonUseItem {
 
   public LVLRandomItem() {
-    // super(new FabricItemSettings().maxCount(1));
     super(new Item.Settings().maxCount(1));
   }
 

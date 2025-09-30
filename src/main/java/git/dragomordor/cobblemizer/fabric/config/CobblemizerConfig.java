@@ -2,7 +2,6 @@ package git.dragomordor.cobblemizer.fabric.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-// import com.google.gson.reflect.TypeToken;
 import git.dragomordor.cobblemizer.fabric.CobblemizerMod;
 import git.dragomordor.cobblemizer.fabric.config.tierconfigs.EVTierConfig;
 import git.dragomordor.cobblemizer.fabric.config.tierconfigs.FriendshipTierConfig;
@@ -13,7 +12,6 @@ import git.dragomordor.cobblemizer.fabric.misc.TierRarityClass;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-// import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +27,6 @@ public class CobblemizerConfig {
 
       CobblemizerConfig config = new CobblemizerConfig();
       File configFile = new File("config/" + CobblemizerMod.MODID + "/" + CobblemizerMod.MODID + ".json");
-      // configFile.getParentFile().mkdirs();
 
       // Load Default Tier Configs to get default tiers and values
       FriendshipTierConfig defaultFriendshipConfig = FriendshipTierConfig.getDefaultConfig(); // FriendshipTierConfig
@@ -40,7 +37,6 @@ public class CobblemizerConfig {
       if (configFile.exists()) {
         try {
           FileReader fileReader = new FileReader(configFile);
-          // Type listType = new TypeToken<CobblemizerConfig>(){}.getType();
           config = gson.fromJson(fileReader, CobblemizerConfig.class);
           fileReader.close();
 
