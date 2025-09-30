@@ -7,15 +7,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class CobblemizerMod implements ModInitializer {
-    public static final Logger LOGGER = LogManager.getLogger(CobblemizerMod.class); // create logger
-    public static final String MODID = "cobblemizer"; // mod ID
-    @Override
-    public void onInitialize() {
-        // Always load config file first
-        CobblemizerConfig.Builder.load();
+  public static final Logger LOGGER = LogManager.getLogger(CobblemizerMod.class); // create logger
+  public static final String MODID = "cobblemizer"; // mod ID
 
-        // Register all items
-        CobblemizerItems.registerModItems();
+  @Override
+  public void onInitialize() {
+    // Always load config file first
+    CobblemizerConfig.Builder.load();
 
-    }
+    // Register all items
+    CobblemizerItems.registerModItems();
+
+  }
 }

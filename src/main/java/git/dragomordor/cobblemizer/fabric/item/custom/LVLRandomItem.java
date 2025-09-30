@@ -14,20 +14,20 @@ import java.util.Random;
 
 public class LVLRandomItem extends PokemonUseItem {
 
-    public LVLRandomItem() {
-        // super(new FabricItemSettings().maxCount(1));
-        super(new Item.Settings().maxCount(1));
-    }
+  public LVLRandomItem() {
+    // super(new FabricItemSettings().maxCount(1));
+    super(new Item.Settings().maxCount(1));
+  }
 
-    @Override
-    public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-        int maxLevel = Cobblemon.config.getMaxPokemonLevel(); // maximum level of Pokémon allowed by config
-        int minLevel = 1;
-        int randomLevel = new Random().nextInt(maxLevel-minLevel+1)+minLevel;
-        pokemon.setLevel(randomLevel);
+  @Override
+  public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
+    int maxLevel = Cobblemon.config.getMaxPokemonLevel(); // maximum level of Pokémon allowed by config
+    int minLevel = 1;
+    int randomLevel = new Random().nextInt(maxLevel - minLevel + 1) + minLevel;
+    pokemon.setLevel(randomLevel);
 
-        itemStack.decrement(1); // remove item after use
-        player.sendMessage(Text.of("Pokémon level randomized"));
-        return ActionResult.SUCCESS;
-    }
+    itemStack.decrement(1); // remove item after use
+    player.sendMessage(Text.of("Pokémon level randomized"));
+    return ActionResult.SUCCESS;
+  }
 }

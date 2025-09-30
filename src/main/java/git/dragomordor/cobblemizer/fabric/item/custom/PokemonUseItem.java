@@ -14,45 +14,49 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
 public abstract class PokemonUseItem extends Item {
-    // public PokemonUseItem(FabricItemSettings arg) {
-    public PokemonUseItem(Item.Settings arg) {
-        super(arg);
+  // public PokemonUseItem(FabricItemSettings arg) {
+  public PokemonUseItem(Item.Settings arg) {
+    super(arg);
+  }
+
+  @Override
+  public ActionResult useOnEntity(ItemStack itemStack, PlayerEntity player, LivingEntity target, Hand hand) {
+    // ensures code is running on client side only
+    if (player.getWorld().isClient) {
+      return ActionResult.PASS;
     }
 
-    @Override
-    public ActionResult useOnEntity(ItemStack itemStack, PlayerEntity player, LivingEntity target, Hand hand) {
-        // ensures code is running on client side only
-        if (player.getWorld().isClient) {
-            return ActionResult.PASS;
-        }
-
-        //checks whether target is Pokémon
-        if (!(target instanceof PokemonEntity pokemonEntity)) {
-            player.sendMessage(Text.of("Not a Pokémon"));
-            return ActionResult.FAIL;
-        }
-
-        // stores pokemon information
-        Pokemon pokemon = pokemonEntity.getPokemon();
-        StoreCoordinates<?> storeCoordinates = pokemon.getStoreCoordinates().get();
-
-        // determines Pokémon ownership
-        Ownership ownership;
-        if (storeCoordinates == null) {
-            ownership = Ownership.WILD;
-        } else if (storeCoordinates.getStore().getUuid().equals(player.getUuid())) {
-            ownership = Ownership.OWNER;
-        } else {
-            ownership = Ownership.OWNED_ANOTHER;
-        }
-
-        // when you are not Pokémon's owner, give error
-        if (ownership != Ownership.OWNER) {
-            player.sendMessage(Text.of("Not your Pokémon"));
-            return ActionResult.FAIL;
-        }
-
-        return processInteraction(itemStack, player, pokemonEntity, pokemon);
+    //checks whether target is Pokémon
+    if (!(target instanceof PokemonEntity pokemonEntity)) {
+      player.sendMessage(Text.of("Not a Pokémon"));
+      return ActionResult.FAIL;
     }
-    public abstract ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon);
+
+    // stores pokemon information
+    Pokemon pokemon = pokemonEntity.getPokemon();
+    StoreCoordinates<?> storeCoordinates = pokemon.getStoreCoordinates().get();
+
+    // determines Pokémon ownership
+    Ownership ownership;
+    if (storeCoordinates == null) {
+      ownership = Ownership.WILD;
+    }
+    else
+      if (storeCoordinates.getStore().getUuid().equals(player.getUuid())) {
+        ownership = Ownership.OWNER;
+      }
+      else {
+        ownership = Ownership.OWNED_ANOTHER;
+      }
+
+    // when you are not Pokémon's owner, give error
+    if (ownership != Ownership.OWNER) {
+      player.sendMessage(Text.of("Not your Pokémon"));
+      return ActionResult.FAIL;
+    }
+
+    return processInteraction(itemStack, player, pokemonEntity, pokemon);
+  }
+
+  public abstract ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon);
 }
