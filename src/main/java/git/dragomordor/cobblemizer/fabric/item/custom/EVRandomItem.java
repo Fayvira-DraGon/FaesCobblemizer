@@ -9,9 +9,11 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
+import java.util.List;
 import java.util.Random;
 
 public class EVRandomItem extends PokemonUseItem {
@@ -20,6 +22,7 @@ public class EVRandomItem extends PokemonUseItem {
     super(new Item.Settings().maxCount(1));
   }
 
+  // TODO: fix ignored total EVs
 
   @Override
   public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
@@ -35,5 +38,12 @@ public class EVRandomItem extends PokemonUseItem {
     itemStack.decrement(1); // remove item after use
     player.sendMessage(Text.of("All EVs randomized"));
     return ActionResult.SUCCESS;
+  }
+
+  @Override
+  public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
+    list.add(Text.of("Randomize All EVs of a Pokemon"));
+
+    super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
 }

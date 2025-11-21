@@ -6,10 +6,12 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class NatureChangerItem extends PokemonUseItem {
@@ -64,5 +66,12 @@ public class NatureChangerItem extends PokemonUseItem {
     player.sendMessage(Text.of("Pokémon is now " + natureDisplayNames.get(nature.getDisplayName())));
     itemStack.decrement(1); // remove item after use
     return ActionResult.SUCCESS;
+  }
+
+  @Override
+  public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
+    list.add(Text.of("Change a Pokémon's Nature to " + this.nature.getDisplayName()));
+
+    super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
 }

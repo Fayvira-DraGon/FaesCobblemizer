@@ -6,8 +6,11 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+
+import java.util.List;
 
 public class GenderSwapItem extends PokemonUseItem {
   public GenderSwapItem() { super(new Item.Settings().maxCount(1)); }
@@ -24,23 +27,22 @@ public class GenderSwapItem extends PokemonUseItem {
 
 
     // swap male -> female and female -> male
-    if (gender == Gender.MALE) {
-      Gender newGender = Gender.FEMALE;
+    if (gender == Gender.MALE || gender == Gender.FEMALE) {
+      Gender newGender = gender == Gender.MALE ? Gender.FEMALE : Gender.MALE;
       pokemon.setGender(newGender);
       String genderName = newGender.name().toLowerCase(); // Get the lowercase gender name
       String formattedGender = Character.toUpperCase(genderName.charAt(0)) + genderName.substring(1); // Convert to title case
       player.sendMessage(Text.of("The Pokémon's gender has been changed to " + formattedGender));
     }
-    else
-      if (gender == Gender.FEMALE) {
-        Gender newGender = Gender.MALE;
-        pokemon.setGender(newGender);
-        String genderName = newGender.name().toLowerCase(); // Get the lowercase gender name
-        String formattedGender = Character.toUpperCase(genderName.charAt(0)) + genderName.substring(1); // Convert to title case
-        player.sendMessage(Text.of("The Pokémon's gender has been changed to " + formattedGender));
-      }
 
     itemStack.decrement(1); // remove item after use
     return ActionResult.SUCCESS;
+  }
+
+  @Override
+  public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
+    list.add(Text.of("Swap Pokémon's gender between Male & Female"));
+
+    super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
 }

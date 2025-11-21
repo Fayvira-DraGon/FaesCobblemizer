@@ -8,9 +8,11 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
+import java.util.List;
 import java.util.Random;
 
 public class IVRandomItem extends PokemonUseItem {
@@ -32,5 +34,12 @@ public class IVRandomItem extends PokemonUseItem {
     itemStack.decrement(1); // remove item after use
     player.sendMessage(Text.of("All IVs randomized"));
     return ActionResult.SUCCESS;
+  }
+
+  @Override
+  public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
+    list.add(Text.of("Randomize a Pokémon's IVs"));
+
+    super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
 }

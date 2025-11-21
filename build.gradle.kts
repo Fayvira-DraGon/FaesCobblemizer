@@ -8,7 +8,7 @@ tasks.named("ideaSyncTask") {
 
 plugins {
   id("java")
-  id("dev.architectury.loom") version ("1.10-SNAPSHOT")
+  id("dev.architectury.loom") version ("1.9-SNAPSHOT")
   id("architectury-plugin") version ("3.4-SNAPSHOT")
   kotlin("jvm") version "2.2.10"
 }
@@ -36,8 +36,8 @@ loom {
       property("mixin.dumpTargetOnFailure", "true")
       property("devauth.enabled", "true") // devauth: enable
       property("devauth.account", "main") // account type: minecraft
-      programArg("--width=${project.property("mod_group_id")}")
-      programArg("--height=${project.property("mod_group_id")}")
+      programArg("--width=${project.property("window_width")}")
+      programArg("--height=${project.property("window_height")}")
       ideConfigGenerated(true)
     }
   }
@@ -69,6 +69,22 @@ dependencies {
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${project.property("junit-jupiter-engine_version")}")
 }
 
+// sourceSets {
+//   main {
+//     java {
+//       exclude( /* ...excludes = */
+//         ""
+//       )
+//     }
+//     resources {
+//       exclude( /* ...excludes = */
+//         "/assets/cobblemizer/textures/item/background.png",
+//         "/assets/cobblemizer/textures/item/background_max.png"
+//       )
+//     }
+//   }
+// }
+
 tasks.getByName<Test>("test") {
   useJUnitPlatform()
 }
@@ -79,4 +95,12 @@ tasks.processResources {
   filesMatching("fabric.mod.json") {
     expand(project.properties)
   }
+  // filesMatching("${project.property("mod_id")}.mixins.json") {
+  //   expand(project.properties)
+  // }
+}
+
+tasks.withType<AbstractArchiveTask> {
+  archiveBaseName = "${project.property("mod_archives_name")}"
+  archiveVersion = "${project.property("mod_version")}"
 }

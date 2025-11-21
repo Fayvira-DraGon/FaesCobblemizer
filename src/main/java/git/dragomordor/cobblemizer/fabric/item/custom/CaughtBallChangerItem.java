@@ -6,8 +6,11 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+
+import java.util.List;
 
 public class CaughtBallChangerItem extends PokemonUseItem {
   private final PokeBall selectedBall;
@@ -16,7 +19,6 @@ public class CaughtBallChangerItem extends PokemonUseItem {
     super(new Item.Settings().maxCount(1));
     this.selectedBall = selectedBall;
   }
-
 
   @Override
   public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
@@ -32,5 +34,11 @@ public class CaughtBallChangerItem extends PokemonUseItem {
     player.sendMessage(Text.of("The Pokémon's caught ball has been changed to " + selectedBall.item().getName().getString()));
     itemStack.decrement(1); // remove item after use
     return ActionResult.SUCCESS;
+  }
+
+  @Override
+  public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
+    list.add(Text.of("Change Pokémon's " + "Caught Ball" + " entry to " + selectedBall.item().getName().getString()));
+    super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
 }

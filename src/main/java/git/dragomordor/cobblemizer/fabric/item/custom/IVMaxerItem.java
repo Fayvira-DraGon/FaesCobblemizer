@@ -5,11 +5,14 @@ import com.cobblemon.mod.common.api.pokemon.stats.Stats;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.IVs;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+
+import java.util.List;
 
 public class IVMaxerItem extends PokemonUseItem {
 
@@ -48,5 +51,12 @@ public class IVMaxerItem extends PokemonUseItem {
     itemStack.decrement(1); // remove item after use
     player.sendMessage(Text.of("All IVs boosted to maximum"));
     return ActionResult.SUCCESS;
+  }
+
+  @Override
+  public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
+    list.add(Text.of("Max All IVs of Pokémon"));
+
+    super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
 }

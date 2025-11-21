@@ -13,8 +13,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
 public abstract class PokemonUseItem extends Item {
-  public PokemonUseItem(Item.Settings arg) {
-    super(arg);
+  public PokemonUseItem(Item.Settings settings) {
+    super(settings);
   }
 
   @Override

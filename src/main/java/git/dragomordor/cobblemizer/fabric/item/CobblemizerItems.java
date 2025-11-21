@@ -10,6 +10,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+// TODO: condense helper methods using .class & new settings
+
 @SuppressWarnings("SameParameterValue")
 public class CobblemizerItems {
   // register IVMaxerItems
@@ -23,10 +25,10 @@ public class CobblemizerItems {
   // version 1.1.0 items
   // register GenderSwapItem
   public static final GenderSwapItem GENDER_SWAPPER = registerGenderSwapItem("gender_swapper", new GenderSwapItem());
-  //ShinySwapItems
-  public static final OTSwapItem ORIGINAL_TRAINER_SWAPPER = registerOTSwapItem("original_trainer_swapper", new OTSwapItem());
-  //ShinySwapItems
+  //ShinySwapItem
   public static final ShinySwapItem SHINY_SWAPPER = registerShinySwapItem("shiny_swapper", new ShinySwapItem());
+  //ShinyCapsuleItem
+  public static final ShinyCapsuleItem SHINY_CAPSULE = registerShinyCapsuleItem("shiny_capsule", new ShinyCapsuleItem());
   //CaughtBallChangerItem
   // no ancient balls in release version of cobblemon yet
   public static final CaughtBallChangerItem AZURE_BALL_CB_CHANGER = registerCaughtBallChangerItem("azure_ball_cb_changer", new CaughtBallChangerItem(PokeBalls.INSTANCE.getAZURE_BALL()));
@@ -179,85 +181,85 @@ public class CobblemizerItems {
   // Register vanilla minecraft item type
   @SuppressWarnings("unused")
   private static Item registerItem(String name, Item item) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), item);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), item);
   }
 
   // Register PokemonUse item type
   @SuppressWarnings("unused")
   private static PokemonUseItem registerPokemonUseItem(String name, PokemonUseItem pokemonUseItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), pokemonUseItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), pokemonUseItem);
   }
 
   //Register IVMaxer item type
   private static IVMaxerItem registerIVMaxerItem(String name, IVMaxerItem ivMaxerItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), ivMaxerItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), ivMaxerItem);
   }
 
   // Register IVRandomizer item type
   private static IVRandomItem registerIVRandomItem(String name, IVRandomItem ivRandomItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), ivRandomItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), ivRandomItem);
   }
 
   // Register EVRandom item type
   private static EVRandomItem registerEVRandomItem(String name, EVRandomItem evRandomItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), evRandomItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), evRandomItem);
   }
 
   // Register LVLRandom item type
   private static LVLRandomItem registerLVLRandomItem(String name, LVLRandomItem lvlRandomItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), lvlRandomItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), lvlRandomItem);
   }
 
   // version 1.1.0 items
   // Register GenderSwapItem item type
   private static GenderSwapItem registerGenderSwapItem(String name, GenderSwapItem genderSwapItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), genderSwapItem);
-  }
-
-  // Register OTSwapItem item type
-  private static OTSwapItem registerOTSwapItem(String name, OTSwapItem otSwapItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), otSwapItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), genderSwapItem);
   }
 
   // Register ShinySwapItem item type
   private static ShinySwapItem registerShinySwapItem(String name, ShinySwapItem shinySwapItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), shinySwapItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), shinySwapItem);
+  }
+
+  // Register ShinyCapsuleItem item type
+  private static ShinyCapsuleItem registerShinyCapsuleItem(String name, ShinyCapsuleItem shinyCapsuleItem) {
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), shinyCapsuleItem);
   }
 
   // Register CaughtBallChanger item type
   private static CaughtBallChangerItem registerCaughtBallChangerItem(String name, CaughtBallChangerItem caughtBallChangerItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), caughtBallChangerItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), caughtBallChangerItem);
   }
 
   // Register FriendShipAdd item type
   private static FriendshipAddItem registerFriendshipAddItem(String name, FriendshipAddItem friendshipAddItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), friendshipAddItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), friendshipAddItem);
   }
 
   // Register EVAddItem item type
   private static EVAddItem registerEVAddItem(String name, EVAddItem evAddItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), evAddItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), evAddItem);
   }
 
   // Register IVAddItem item type
   private static IVAddItem registerIVAddItem(String name, IVAddItem ivAddItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), ivAddItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), ivAddItem);
   }
 
   // Register LVLAddItem item type
   private static LVLAddItem registerLVLAddItem(String name, LVLAddItem lvlAddItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), lvlAddItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), lvlAddItem);
   }
 
   // Register NatureChangerItem item type
   private static NatureChangerItem registerNatureChangerItem(String name, NatureChangerItem natureChangerItem) {
-    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MODID, name), natureChangerItem);
+    return Registry.register(Registries.ITEM, Identifier.of(CobblemizerMod.MOD_ID, name), natureChangerItem);
   }
 
   // Other Functions
   // register all mod items function
   public static void registerModItems() {
-    CobblemizerMod.LOGGER.info("Register Mod Items for " + CobblemizerMod.MODID);
+    CobblemizerMod.LOGGER.info("Register Mod Items for " + CobblemizerMod.MOD_NAME);
 
     // creative mode tab entries
     CobblemizerItemGroups.registerItemGroups();

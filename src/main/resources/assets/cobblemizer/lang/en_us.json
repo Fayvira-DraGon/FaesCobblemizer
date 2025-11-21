@@ -1,4 +1,6 @@
 {
+  "itemgroup.cobblemizer": "Cobblemizer",
+
   "item.cobblemizer.azure_ball_cb_changer": "Azure Ball Caughtball Swap",
   "item.cobblemizer.beast_ball_cb_changer": "Beast Ball Caughtball Swap",
   "item.cobblemizer.cherish_ball_cb_changer": "Cherish Ball Caughtball Swap",
@@ -30,12 +32,14 @@
   "item.cobblemizer.timer_ball_cb_changer": "Timer Ball Caughtball Swap",
   "item.cobblemizer.ultra_ball_cb_changer": "Ultra Ball Caughtball Swap",
   "item.cobblemizer.verdant_ball_cb_changer": "Verdant Ball Caughtball Swap",
+
   "item.cobblemizer.friendship_add_common": "Friendship increase - COMMON",
   "item.cobblemizer.friendship_add_uncommon": "Friendship increase - UNCOMMON",
   "item.cobblemizer.friendship_add_rare": "Friendship increase - RARE",
   "item.cobblemizer.friendship_add_epic": "Friendship increase - EPIC",
   "item.cobblemizer.friendship_add_legendary": "Friendship increase - LEGENDARY",
   "item.cobblemizer.friendship_add_max": "Friendship MAX",
+
   "item.cobblemizer.ev_random": "EV Random",
   "item.cobblemizer.ev_add_sp_atk_common": "Special Attack EV increase - COMMON",
   "item.cobblemizer.ev_add_sp_atk_uncommon": "Special Attack EV increase - UNCOMMON",
@@ -73,6 +77,7 @@
   "item.cobblemizer.ev_add_hp_epic": "HP EV increase - EPIC",
   "item.cobblemizer.ev_add_hp_legendary": "HP EV increase - LEGENDARY",
   "item.cobblemizer.ev_add_hp_max": "HP EV Max",
+
   "item.cobblemizer.all_iv_maxer": "All IV Max",
   "item.cobblemizer.iv_random": "IV Random",
   "item.cobblemizer.iv_add_sp_atk_common": "Special Attack IV increase - COMMON",
@@ -111,6 +116,7 @@
   "item.cobblemizer.iv_add_hp_epic": "HP IV increase - EPIC",
   "item.cobblemizer.iv_add_hp_legendary": "HP IV increase - LEGENDARY",
   "item.cobblemizer.iv_add_hp_max": "HP IV Max",
+
   "item.cobblemizer.level_random": "Level Random",
   "item.cobblemizer.lvl_add_common": "Level increase - COMMON",
   "item.cobblemizer.lvl_add_uncommon": "Level increase - UNCOMMON",
@@ -118,9 +124,8 @@
   "item.cobblemizer.lvl_add_epic": "Level increase - EPIC",
   "item.cobblemizer.lvl_add_legendary": "Level increase - LEGENDARY",
   "item.cobblemizer.lvl_add_max": "Level Max",
-  "item.cobblemizer.gender_swapper": "Gender Swap",
-  "item.cobblemizer.original_trainer_swapper": "Original Trainer Swap",
-  "item.cobblemizer.shiny_swapper": "Shiny Status Swap",
+
+  "item.cobblemizer.nature_changer_random": "Nature Changer - Random",
   "item.cobblemizer.nature_changer_adamant": "Nature Changer - Adamant",
   "item.cobblemizer.nature_changer_bashful": "Nature Changer - Bashful",
   "item.cobblemizer.nature_changer_bold": "Nature Changer - Bold",
@@ -146,5 +151,9 @@
   "item.cobblemizer.nature_changer_sassy": "Nature Changer - Sassy",
   "item.cobblemizer.nature_changer_serious": "Nature Changer - Serious",
   "item.cobblemizer.nature_changer_timid": "Nature Changer - Timid",
-  "itemgroup.cobblemizer": "Cobblemizer"
+
+  "item.cobblemizer.gender_swapper": "Gender Swap",
+
+  "item.cobblemizer.shiny_capsule": "Shiny Capsule",
+  "item.cobblemizer.shiny_swapper": "Shiny Status Swap"
 }

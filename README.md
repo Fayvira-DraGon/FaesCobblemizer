@@ -5,9 +5,10 @@ Cobblemizer, formerly known as Cobblemaxer, is a Cobblemon 1.4.1 side mod design
 ## Features
 - **Gender Swapper Item:** Allows swapping the gender of a Pokémon.
 - **Shiny Swapper Item:** Enables swapping the shiny status of a Pokémon.
+- **Shiny Capsule Item:** Enables capturing the shiny status of a Pokémon and applying it to another Pokémon in its evolutionary line.
 - **Caught Ball Swapper Items:**  Introduces items for changing the caught ball of a Pokémon.
-
 - **Nature Changer Items:**  Introduces items for changing the nature of a Pokémon.
+
 #### Tier items:
 Tier/Rarity items, with values changeable in the config (cobblemizer/cobblemizer.json)
 ***Tiered items:***
