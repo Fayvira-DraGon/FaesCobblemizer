@@ -26,7 +26,7 @@ public class CobblemizerConfig {
       Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
       CobblemizerConfig config = new CobblemizerConfig();
-      File configFile = new File("config/" + CobblemizerMod.MODID + "/" + CobblemizerMod.MODID + ".json");
+      File configFile = new File("config/" + CobblemizerMod.MOD_ID + "/" + CobblemizerMod.MOD_ID + ".json");
 
       // Load Default Tier Configs to get default tiers and values
       FriendshipTierConfig defaultFriendshipConfig = FriendshipTierConfig.getDefaultConfig(); // FriendshipTierConfig
