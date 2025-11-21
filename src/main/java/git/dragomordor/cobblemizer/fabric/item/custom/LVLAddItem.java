@@ -3,12 +3,15 @@ package git.dragomordor.cobblemizer.fabric.item.custom;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig;
-import git.dragomordor.cobblemizer.fabric.misc.TierRarityClass;
+import git.dragomordor.cobblemizer.fabric.config.TierRarityClass;
 import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+
+import java.util.List;
 
 public class LVLAddItem extends PokemonUseItem {
   private final String tier;
@@ -54,5 +57,14 @@ public class LVLAddItem extends PokemonUseItem {
       }
     }
     return 0; // Default value if tierName not found in config
+  }
+
+  @Override
+  public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
+    CobblemizerConfig config = CobblemizerConfig.Builder.load();
+
+    list.add(Text.of("Increase Pokémon's Level by up to " + getIncreaseAmountForTier(config, tier)));
+
+    super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
 }

@@ -38,7 +38,7 @@ public class CaughtBallChangerItem extends PokemonUseItem {
 
   @Override
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
-    list.add(Text.of("Change Pokémon's " + "Caught Ball" + " entry to " + selectedBall.item().getName().getString()));
+    list.add(Text.of("Change Pokémon's Caught Ball entry to " + selectedBall.item().getName().getString()));
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
 }

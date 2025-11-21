@@ -54,7 +54,7 @@ public class ShinyCapsuleItem extends PokemonUseItem {
     String species = getSpecies(itemStack);
     list.add(species.isEmpty() ?
       Text.of("Capture the Shiny Status of a Pokémon") :
-      Text.of("Apply Captured Shiny Status to a Pokémon in the " + species + "Evolutionary Line"));
+      Text.of("Apply Captured Shiny Status to a Pokémon in the " + species + " Evolutionary Line"));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }

@@ -5,12 +5,15 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.IVs;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig;
-import git.dragomordor.cobblemizer.fabric.misc.TierRarityClass;
+import git.dragomordor.cobblemizer.fabric.config.TierRarityClass;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+
+import java.util.List;
 
 import static git.dragomordor.cobblemizer.fabric.CobblemizerMod.LOGGER;
 
@@ -66,5 +69,14 @@ public class IVAddItem extends PokemonUseItem {
       }
     }
     return 0; // Default value if tierName not found in config
+  }
+
+  @Override
+  public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
+    CobblemizerConfig config = CobblemizerConfig.Builder.load();
+
+    list.add(Text.of("Increase Pokémon's " + statToBoost.getDisplayName().getString() + " EV by up to " + getIncreaseAmountForTier(config, tier)));
+
+    super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
 }

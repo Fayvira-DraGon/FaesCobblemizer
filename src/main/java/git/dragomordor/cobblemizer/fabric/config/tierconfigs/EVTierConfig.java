@@ -1,6 +1,6 @@
 package git.dragomordor.cobblemizer.fabric.config.tierconfigs;
 
-import git.dragomordor.cobblemizer.fabric.misc.TierRarityClass;
+import git.dragomordor.cobblemizer.fabric.config.TierRarityClass;
 
 import java.util.ArrayList;
 import java.util.List;

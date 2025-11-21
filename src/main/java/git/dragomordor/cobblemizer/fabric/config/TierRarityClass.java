@@ -1,4 +1,4 @@
-package git.dragomordor.cobblemizer.fabric.misc;
+package git.dragomordor.cobblemizer.fabric.config;
 
 public class TierRarityClass {
   public String name;

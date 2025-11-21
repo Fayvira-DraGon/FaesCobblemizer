@@ -7,13 +7,15 @@ import git.dragomordor.cobblemizer.fabric.config.tierconfigs.EVTierConfig;
 import git.dragomordor.cobblemizer.fabric.config.tierconfigs.FriendshipTierConfig;
 import git.dragomordor.cobblemizer.fabric.config.tierconfigs.IVTierConfig;
 import git.dragomordor.cobblemizer.fabric.config.tierconfigs.LVLTierConfig;
-import git.dragomordor.cobblemizer.fabric.misc.TierRarityClass;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import static git.dragomordor.cobblemizer.fabric.CobblemizerMod.LOGGER;
+import static git.dragomordor.cobblemizer.fabric.CobblemizerMod.MOD_NAME;
 
 public class CobblemizerConfig {
   public List<TierRarityClass> friendshipTiers = new ArrayList<>();
@@ -28,6 +30,8 @@ public class CobblemizerConfig {
       CobblemizerConfig config = new CobblemizerConfig();
       File configFile = new File("config/" + CobblemizerMod.MOD_ID + "/" + CobblemizerMod.MOD_ID + ".json");
 
+      LOGGER.info("{} configuration directory {}.", MOD_NAME, configFile.getParentFile().mkdirs() ? "was created" : "already existed");
+
       // Load Default Tier Configs to get default tiers and values
       FriendshipTierConfig defaultFriendshipConfig = FriendshipTierConfig.getDefaultConfig(); // FriendshipTierConfig
       EVTierConfig defaultEVConfig = EVTierConfig.getDefaultConfig(); // EVTierConfig
@@ -35,6 +39,7 @@ public class CobblemizerConfig {
       LVLTierConfig defaultLVLConfig = LVLTierConfig.getDefaultConfig(); // LVLTierConfig
 
       if (configFile.exists()) {
+        LOGGER.info("{} configuration file exists.", MOD_NAME);
         try {
           FileReader fileReader = new FileReader(configFile);
           config = gson.fromJson(fileReader, CobblemizerConfig.class);
@@ -71,10 +76,12 @@ public class CobblemizerConfig {
 
         }
         catch (Exception e) {
-          System.out.println("Error reading config file");
+          LOGGER.info("Error {} reading config file", e.getMessage());
         }
       }
       else {
+        LOGGER.info("{} configuration file doesn't exist.", MOD_NAME);
+
         // If the file does not exist, create it with the default values
         try {
           // Defaults of all tiers
@@ -88,7 +95,7 @@ public class CobblemizerConfig {
           fileWriter.close();
         }
         catch (Exception e) {
-          e.printStackTrace();
+          LOGGER.info("Error {} reading default config values", e.getMessage());
         }
       }
 
