@@ -9,10 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class NatureChangerItem extends PokemonUseItem {
   private final Nature nature;
@@ -24,53 +23,24 @@ public class NatureChangerItem extends PokemonUseItem {
 
   @Override
   public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-
-    // temporary solution to get names as Natures does not seem to have good getName or getDisplay name for java
-    Map<String, String> natureDisplayNames = new HashMap<>();
-    natureDisplayNames.put("cobblemon.nature.hardy", "Hardy");
-    natureDisplayNames.put("cobblemon.nature.lonely", "Lonely");
-    natureDisplayNames.put("cobblemon.nature.adamant", "Adamant");
-    natureDisplayNames.put("cobblemon.nature.naughty", "Naughty");
-    natureDisplayNames.put("cobblemon.nature.brave", "Brave");
-    natureDisplayNames.put("cobblemon.nature.bold", "Bold");
-    natureDisplayNames.put("cobblemon.nature.docile", "Docile");
-    natureDisplayNames.put("cobblemon.nature.impish", "Impish");
-    natureDisplayNames.put("cobblemon.nature.lax", "Lax");
-    natureDisplayNames.put("cobblemon.nature.relaxed", "Relaxed");
-    natureDisplayNames.put("cobblemon.nature.modest", "Modest");
-    natureDisplayNames.put("cobblemon.nature.mild", "Mild");
-    natureDisplayNames.put("cobblemon.nature.bashful", "Bashful");
-    natureDisplayNames.put("cobblemon.nature.rash", "Rash");
-    natureDisplayNames.put("cobblemon.nature.quiet", "Quiet");
-    natureDisplayNames.put("cobblemon.nature.calm", "Calm");
-    natureDisplayNames.put("cobblemon.nature.gentle", "Gentle");
-    natureDisplayNames.put("cobblemon.nature.careful", "Careful");
-    natureDisplayNames.put("cobblemon.nature.quirky", "Quirky");
-    natureDisplayNames.put("cobblemon.nature.sassy", "Sassy");
-    natureDisplayNames.put("cobblemon.nature.timid", "Timid");
-    natureDisplayNames.put("cobblemon.nature.hasty", "Hasty");
-    natureDisplayNames.put("cobblemon.nature.jolly", "Jolly");
-    natureDisplayNames.put("cobblemon.nature.naive", "Naive");
-    natureDisplayNames.put("cobblemon.nature.serious", "Serious");
-
     Nature currentNature = pokemon.getNature(); // get current Pokémon nature
 
     // same nature is failed
     if (currentNature == nature) {
-      player.sendMessage(Text.of("Pokémon is already " + natureDisplayNames.get(nature.getDisplayName())));
+      player.sendMessage(Text.of("Pokémon is already " + StringUtils.capitalize(nature.getName().getPath().toLowerCase())));
       return ActionResult.FAIL;
     }
 
     // change nature
     pokemon.setNature(nature);
-    player.sendMessage(Text.of("Pokémon is now " + natureDisplayNames.get(nature.getDisplayName())));
+    player.sendMessage(Text.of("Pokémon is now " + StringUtils.capitalize(nature.getName().getPath().toLowerCase())));
     itemStack.decrement(1); // remove item after use
     return ActionResult.SUCCESS;
   }
 
   @Override
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
-    list.add(Text.of("Change a Pokémon's Nature to " + this.nature.getDisplayName()));
+    list.add(Text.of("Change a Pokémon's Nature to " + StringUtils.capitalize(nature.getName().getPath().toLowerCase())));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }

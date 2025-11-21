@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -17,23 +18,18 @@ public class GenderSwapItem extends PokemonUseItem {
 
   @Override
   public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-
     Gender gender = pokemon.getGender();
+
     // if gender is genderless, it cannot swap
     if (gender == Gender.GENDERLESS) {
-      player.sendMessage(Text.of("Cannot change gender of gender unknown Pokémon"));
+      player.sendMessage(Text.of("Pokémon Gender cannot be Gender-Unknown"));
       return ActionResult.FAIL;
     }
 
-
     // swap male -> female and female -> male
-    if (gender == Gender.MALE || gender == Gender.FEMALE) {
-      Gender newGender = gender == Gender.MALE ? Gender.FEMALE : Gender.MALE;
-      pokemon.setGender(newGender);
-      String genderName = newGender.name().toLowerCase(); // Get the lowercase gender name
-      String formattedGender = Character.toUpperCase(genderName.charAt(0)) + genderName.substring(1); // Convert to title case
-      player.sendMessage(Text.of("The Pokémon's gender has been changed to " + formattedGender));
-    }
+    Gender newGender = (gender == Gender.MALE ? Gender.FEMALE : Gender.MALE);
+    pokemon.setGender(newGender);
+    player.sendMessage(Text.of("The Pokémon's gender has been changed to " + StringUtils.capitalize(newGender.name().toLowerCase())));
 
     itemStack.decrement(1); // remove item after use
     return ActionResult.SUCCESS;
@@ -41,7 +37,7 @@ public class GenderSwapItem extends PokemonUseItem {
 
   @Override
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
-    list.add(Text.of("Swap Pokémon's gender between Male & Female"));
+    list.add(Text.of("Swap Pokémon's Gender"));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
