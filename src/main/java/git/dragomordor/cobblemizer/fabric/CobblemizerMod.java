@@ -1,5 +1,6 @@
 package git.dragomordor.cobblemizer.fabric;
 
+import git.dragomordor.cobblemizer.fabric.component.ModComponents;
 import git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig;
 import git.dragomordor.cobblemizer.fabric.item.CobblemizerItems;
 import net.fabricmc.api.ModInitializer;
@@ -16,7 +17,8 @@ public class CobblemizerMod implements ModInitializer {
   public void onInitialize() {
     // Always load config file first
     CobblemizerConfig.Builder.load();
-
+    // Register mod components
+    ModComponents.registerDataComponentTypes();
     // Register all items
     CobblemizerItems.registerModItems();
 
