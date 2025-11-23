@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.api.pokemon.evolution.PreEvolution;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
-import git.dragomordor.cobblemizer.fabric.component.ModComponents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -13,9 +12,11 @@ import net.minecraft.util.ActionResult;
 
 import java.util.List;
 
+import static git.dragomordor.cobblemizer.fabric.item.ItemComponents.SPECIES_NAME_COMPONENT;
+
 public class ShinyCapsuleItem extends PokemonUseItem {
   public ShinyCapsuleItem() {
-    super(new Settings().maxCount(1).component(ModComponents.SPECIES_COMPONENT, ""));
+    super(new Settings().maxCount(1).component(SPECIES_NAME_COMPONENT, ""));
   }
 
   @Override
@@ -30,7 +31,7 @@ public class ShinyCapsuleItem extends PokemonUseItem {
         player.sendMessage(Text.of("The Pokémon must be Shiny to Capture its Shiny Status"));
         return ActionResult.FAIL;
       }
-      itemStack.set(ModComponents.SPECIES_COMPONENT, evoLine);
+      itemStack.set(SPECIES_NAME_COMPONENT, evoLine);
       pokemon.setShiny(false);
       player.sendMessage(Text.of("Successfully Captured the Shiny Status of this " + pokemonName));
       return ActionResult.SUCCESS;
@@ -60,7 +61,7 @@ public class ShinyCapsuleItem extends PokemonUseItem {
   }
 
   private String getSpecies(ItemStack itemStack) {
-    return itemStack.getOrDefault(ModComponents.SPECIES_COMPONENT, "");
+    return itemStack.getOrDefault(SPECIES_NAME_COMPONENT, "");
   }
 
   private String getEvoLine(Pokemon pokemon) {

@@ -1,14 +1,14 @@
 package git.dragomordor.cobblemizer.fabric.item;
 
-import git.dragomordor.cobblemizer.fabric.CobblemizerMod;
+import git.dragomordor.cobblemizer.fabric.Cobblemizer;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 
-import static git.dragomordor.cobblemizer.fabric.CobblemizerMod.LOGGER;
-import static git.dragomordor.cobblemizer.fabric.CobblemizerMod.MOD_NAME;
+import static git.dragomordor.cobblemizer.fabric.Cobblemizer.LOGGER;
+import static git.dragomordor.cobblemizer.fabric.Cobblemizer.MOD_NAME;
 import static git.dragomordor.cobblemizer.fabric.item.CobblemizerItems.*;
 
 
@@ -16,7 +16,7 @@ public class CobblemizerItemGroups {
 
   @SuppressWarnings("unused")
   public static final ItemGroup COBBLEMIZER_GROUP = Registry.register(Registries.ITEM_GROUP,
-    CobblemizerMod.of("gender_swapper"),
+    Cobblemizer.of("gender_swapper"),
     new ItemGroup.Builder(null, -1).displayName(Text.translatable("itemgroup.cobblemizer")).icon(() -> new ItemStack(GENDER_SWAPPER)).entries((displayContext, entries) -> {
       // CaughtBallChangerItem
       entries.add(AZURE_BALL_CB_CHANGER);

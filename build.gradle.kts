@@ -50,6 +50,7 @@ repositories {
   maven("https://maven.impactdev.net/repository/development/") { name = "Cobblemon" }
   maven("https://oss.sonatype.org/content/repositories/snapshots") { name = "Cobblemon" }
   maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1") { name = "DevAuth" }
+  maven("https://maven.wispforest.io/releases/") { name = "oωo" }
 }
 
 dependencies {
@@ -60,9 +61,13 @@ dependencies {
   modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_api_version")}")
   modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${project.property("devauth_version")}")
   modImplementation(fabricApi.module("${project.property("fabric_command_api_version")}", "${project.property("fabric_api_version")}"))
-
   modImplementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_version")}")
+
   modImplementation("com.cobblemon:fabric:${project.property("cobblemon_version")}")
+  modImplementation("io.wispforest:owo-lib:${project.property("owo_version")}")
+  annotationProcessor("io.wispforest:owo-lib:${project.property("owo_version")}")
+  include("io.wispforest:owo-sentinel:${project.property("owo_version")}")
+
   modCompileOnly("maven.modrinth:cobbreeding:${project.property("cobbreeding_version")}") // cobbreeding
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:${project.property("junit-jupiter-api_version")}")

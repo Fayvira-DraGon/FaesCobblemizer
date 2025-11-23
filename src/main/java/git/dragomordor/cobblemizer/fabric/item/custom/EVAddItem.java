@@ -15,7 +15,7 @@ import net.minecraft.util.ActionResult;
 
 import java.util.List;
 
-import static git.dragomordor.cobblemizer.fabric.CobblemizerMod.LOGGER;
+import static git.dragomordor.cobblemizer.fabric.Cobblemizer.LOGGER;
 
 public class EVAddItem extends PokemonUseItem {
   private final String tier;

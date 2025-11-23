@@ -2,7 +2,7 @@ package git.dragomordor.cobblemizer.fabric.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import git.dragomordor.cobblemizer.fabric.CobblemizerMod;
+import git.dragomordor.cobblemizer.fabric.Cobblemizer;
 import git.dragomordor.cobblemizer.fabric.config.tierconfigs.EVTierConfig;
 import git.dragomordor.cobblemizer.fabric.config.tierconfigs.FriendshipTierConfig;
 import git.dragomordor.cobblemizer.fabric.config.tierconfigs.IVTierConfig;
@@ -14,8 +14,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static git.dragomordor.cobblemizer.fabric.CobblemizerMod.LOGGER;
-import static git.dragomordor.cobblemizer.fabric.CobblemizerMod.MOD_NAME;
+import static git.dragomordor.cobblemizer.fabric.Cobblemizer.LOGGER;
+import static git.dragomordor.cobblemizer.fabric.Cobblemizer.MOD_NAME;
 
 public class CobblemizerConfig {
   public List<TierRarityClass> friendshipTiers = new ArrayList<>();
@@ -28,7 +28,7 @@ public class CobblemizerConfig {
       Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
       CobblemizerConfig config = new CobblemizerConfig();
-      File configFile = new File("config/" + CobblemizerMod.MOD_ID + "/" + CobblemizerMod.MOD_ID + ".json");
+      File configFile = new File("config/" + Cobblemizer.MOD_ID + "/" + Cobblemizer.MOD_ID + ".json");
 
       LOGGER.info("{} configuration directory {}.", MOD_NAME, configFile.getParentFile().mkdirs() ? "was created" : "already existed");
 
