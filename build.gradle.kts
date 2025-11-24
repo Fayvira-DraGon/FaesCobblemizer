@@ -95,10 +95,26 @@ tasks.getByName<Test>("test") {
 }
 
 tasks.processResources {
-  inputs.property("version", project.version)
+  val properties = mapOf(
+      "version" to project.version,
+      "mod_id" to project.property("mod_id"),
+      "mod_name" to project.property("mod_name"),
+      "mod_description" to project.property("mod_description"),
+      "mod_authors" to project.property("mod_authors"),
+      "mod_homepage" to project.property("mod_homepage"),
+      "mod_github" to project.property("mod_github"),
+      "mod_license" to project.property("mod_license"),
+      "fabric_loader_version" to project.property("fabric_loader_version"),
+      "minecraft_version" to project.property("minecraft_version"),
+      "cobblemon_version" to project.property("cobblemon_version")
+  )
+
+  properties.forEach { (key, value) ->
+      inputs.property(key, value)
+  }
 
   filesMatching("fabric.mod.json") {
-    expand(project.properties)
+    expand(properties)
   }
   // filesMatching("${project.property("mod_id")}.mixins.json") {
   //   expand(project.properties)

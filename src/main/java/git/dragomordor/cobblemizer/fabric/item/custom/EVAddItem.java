@@ -1,5 +1,6 @@
 package git.dragomordor.cobblemizer.fabric.item.custom;
 
+import com.cobblemon.mod.common.api.pokemon.stats.ItemEvSource;
 import com.cobblemon.mod.common.api.pokemon.stats.Stat;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.EVs;
@@ -10,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
@@ -52,7 +54,7 @@ public class EVAddItem extends PokemonUseItem {
     }
 
     // if EV not max, increase by tier amount
-    evs.add(statToBoost, actualIncrease);
+    evs.add(statToBoost, actualIncrease, new ItemEvSource((ServerPlayerEntity) player, itemStack, pokemon));
     player.sendMessage(Text.of("Increased Pokémon's " + statToBoost.getDisplayName().getString() + " EV by " + actualIncrease));
     if (newEVAmount == maxEV) { // if new EV amount is maxed, indicate to player
       player.sendMessage(Text.of("Pokémon's " + statToBoost.getDisplayName().getString() + " EV is now at maximum"));
