@@ -27,10 +27,10 @@ public class FriendshipAddItem extends PokemonUseItem {
     CobblemizerConfig config = CobblemizerConfig.Builder.load();
     int maxFriendship = 255; // Maximum friendship value
     int currentFriendship = pokemon.getFriendship(); // Current friendship value
-    // Get the increaseAmount from the config based on the provided tier
-    int increaseAmount = getIncreaseAmountForTier(config, tier);
-    // Modify the Pokémon's friendship by the obtained increaseAmount
-    int newFriendship = Math.min(currentFriendship + increaseAmount, maxFriendship);
+    // Get the tierAmount from the config based on the provided tier
+    int tierAmount = getTierAmount(config, tier);
+    // Modify the Pokémon's friendship by the obtained tierAmount
+    int newFriendship = Math.min(currentFriendship + tierAmount, maxFriendship);
     int actualIncrease = newFriendship - currentFriendship;
     boolean increasedFriendship = pokemon.incrementFriendship(actualIncrease, false);
 
@@ -51,10 +51,10 @@ public class FriendshipAddItem extends PokemonUseItem {
   }
 
   // Method to get the increaseAmount from the config based on the provided tier
-  private int getIncreaseAmountForTier(CobblemizerConfig config, String tierName) {
+  private int getTierAmount(CobblemizerConfig config, String tierName) {
     for (TierRarityClass tier : config.friendshipTiers) {
       if (tier.name.equalsIgnoreCase(tierName)) {
-        return tier.increaseAmount;
+        return tier.tierAmount;
       }
     }
     return 0; // Default value if tierName not found in config
@@ -64,7 +64,7 @@ public class FriendshipAddItem extends PokemonUseItem {
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
     CobblemizerConfig config = CobblemizerConfig.Builder.load();
 
-    list.add(Text.of("Increase Pokémon's Friendship by up to " + getIncreaseAmountForTier(config, tier)));
+    list.add(Text.of("Increase Pokémon's Friendship by up to " + getTierAmount(config, tier)));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }

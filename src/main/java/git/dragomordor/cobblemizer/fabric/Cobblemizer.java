@@ -21,7 +21,6 @@ public class Cobblemizer implements ModInitializer {
     ItemComponents.registerItemComponents();
     // Register all items
     CobblemizerItems.registerModItems();
-
   }
 
   public static Identifier of(String name) {

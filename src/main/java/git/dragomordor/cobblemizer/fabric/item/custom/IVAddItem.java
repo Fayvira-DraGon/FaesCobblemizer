@@ -32,9 +32,8 @@ public class IVAddItem extends PokemonUseItem {
     CobblemizerConfig config = CobblemizerConfig.Builder.load();
     int maxIV = IVs.MAX_VALUE; // Maximum IV value
     IVs IVs = pokemon.getIvs(); // Current IV values
-    // Get the increaseAmount from the config based on the provided tier
-    int increaseAmount = getIncreaseAmountForTier(config, tier);
-    //int IVcurrentAmount = IVs.get(this.statToBoost);
+    // Get the tierAmount from the config based on the provided tier
+    int tierAmount = getTierAmount(config, tier);
     Integer currentIvBoxed = IVs.get(this.statToBoost);
     if(currentIvBoxed == null) {
       LOGGER.warn("Invalid stat for item: {}", this.getClass().getSimpleName());
@@ -42,8 +41,8 @@ public class IVAddItem extends PokemonUseItem {
       return ActionResult.FAIL;
     }
     int IVcurrentAmount = currentIvBoxed;
-    // Modify the Pokémon's IV by the obtained increaseAmount
-    int newIVAmount = Math.min(IVcurrentAmount + increaseAmount, maxIV);
+    // Modify the Pokémon's IV by the obtained tierAmount
+    int newIVAmount = Math.min(IVcurrentAmount + tierAmount, maxIV);
     int actualIncrease = newIVAmount - IVcurrentAmount;
 
     if (actualIncrease <= 0) { // If IV is already at max, return fail
@@ -62,10 +61,10 @@ public class IVAddItem extends PokemonUseItem {
   }
 
   // Method to get the increaseAmount from the config based on the provided tier
-  private int getIncreaseAmountForTier(CobblemizerConfig config, String tierName) {
+  private int getTierAmount(CobblemizerConfig config, String tierName) {
     for (TierRarityClass tier : config.IVTiers) {
       if (tier.name.equalsIgnoreCase(tierName)) {
-        return tier.increaseAmount;
+        return tier.tierAmount;
       }
     }
     return 0; // Default value if tierName not found in config
@@ -75,7 +74,7 @@ public class IVAddItem extends PokemonUseItem {
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
     CobblemizerConfig config = CobblemizerConfig.Builder.load();
 
-    list.add(Text.of("Increase Pokémon's " + statToBoost.getDisplayName().getString() + " EV by up to " + getIncreaseAmountForTier(config, tier)));
+    list.add(Text.of("Increase Pokémon's " + statToBoost.getDisplayName().getString() + " EV by up to " + getTierAmount(config, tier)));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }

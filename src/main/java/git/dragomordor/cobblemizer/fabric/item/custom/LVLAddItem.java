@@ -16,7 +16,6 @@ import java.util.List;
 public class LVLAddItem extends PokemonUseItem {
   private final String tier;
 
-
   public LVLAddItem(String tier) {
     // super(new FabricItemSettings().maxCount(1));
     super(new Item.Settings().maxCount(1));
@@ -28,10 +27,10 @@ public class LVLAddItem extends PokemonUseItem {
     CobblemizerConfig config = CobblemizerConfig.Builder.load();
     int maxLevel = 100; // Maximum level
     int currentLevel = pokemon.getLevel(); // Current level
-    // Get the increaseAmount from the config based on the provided tier
-    int increaseAmount = getIncreaseAmountForTier(config, tier);
-    // Modify the Pokémon's friendship by the obtained increaseAmount
-    int newLevel = Math.min(currentLevel + increaseAmount, maxLevel);
+    // Get the tierAmount from the config based on the provided tier
+    int tierAmount = getTierAmount(config, tier);
+    // Modify the Pokémon's friendship by the obtained tierAmount
+    int newLevel = Math.min(currentLevel + tierAmount, maxLevel);
     int actualIncrease = newLevel - currentLevel;
 
     if (actualIncrease <= 0) { // If Level is already at max, return fail
@@ -50,10 +49,10 @@ public class LVLAddItem extends PokemonUseItem {
   }
 
   // Method to get the increaseAmount from the config based on the provided tier
-  private int getIncreaseAmountForTier(CobblemizerConfig config, String tierName) {
+  private int getTierAmount(CobblemizerConfig config, String tierName) {
     for (TierRarityClass tier : config.friendshipTiers) {
       if (tier.name.equalsIgnoreCase(tierName)) {
-        return tier.increaseAmount;
+        return tier.tierAmount;
       }
     }
     return 0; // Default value if tierName not found in config
@@ -63,7 +62,7 @@ public class LVLAddItem extends PokemonUseItem {
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
     CobblemizerConfig config = CobblemizerConfig.Builder.load();
 
-    list.add(Text.of("Increase Pokémon's Level by up to " + getIncreaseAmountForTier(config, tier)));
+    list.add(Text.of("Increase Pokémon's Level by up to " + getTierAmount(config, tier)));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }

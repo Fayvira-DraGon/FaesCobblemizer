@@ -55,7 +55,7 @@ public class IVMaxerItem extends PokemonUseItem {
 
   @Override
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
-    list.add(Text.of("Max All IVs of Pokémon"));
+    list.add(Text.of("Maximize All IVs of Pokémon"));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }

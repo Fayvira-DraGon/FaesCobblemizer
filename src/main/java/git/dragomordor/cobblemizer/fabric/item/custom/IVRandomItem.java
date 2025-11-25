@@ -38,7 +38,7 @@ public class IVRandomItem extends PokemonUseItem {
 
   @Override
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
-    list.add(Text.of("Randomize a Pokémon's IVs"));
+    list.add(Text.of("Randomize All IVs of a Pokémon"));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }
