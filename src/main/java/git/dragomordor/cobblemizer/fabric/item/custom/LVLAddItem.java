@@ -2,8 +2,6 @@ package git.dragomordor.cobblemizer.fabric.item.custom;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig;
-import git.dragomordor.cobblemizer.fabric.config.TierRarityClass;
 import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -12,6 +10,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
 import java.util.List;
+
+import static git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig.LVL_TIERS;
+import static git.dragomordor.cobblemizer.fabric.config.TierRarityClass.getTierAmount;
 
 public class LVLAddItem extends PokemonUseItem {
   private final String tier;
@@ -24,45 +25,25 @@ public class LVLAddItem extends PokemonUseItem {
 
   @Override
   public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-    CobblemizerConfig config = CobblemizerConfig.Builder.load();
-    int maxLevel = 100; // Maximum level
-    int currentLevel = pokemon.getLevel(); // Current level
-    // Get the tierAmount from the config based on the provided tier
-    int tierAmount = getTierAmount(config, tier);
-    // Modify the Pokémon's friendship by the obtained tierAmount
-    int newLevel = Math.min(currentLevel + tierAmount, maxLevel);
-    int actualIncrease = newLevel - currentLevel;
+    int level = pokemon.getLevel(); // Get Pokémon's Level
+    int tierAmount = getTierAmount(LVL_TIERS, tier); // Get tierAmount from config
 
-    if (actualIncrease <= 0) { // If Level is already at max, return fail
-      player.sendMessage(Text.of("Level is already at maximum"));
-      return ActionResult.FAIL;
+    pokemon.setLevel(level + tierAmount); // Increase level
+
+    if (pokemon.getLevel() == level) { // If Level is already at max, return pass
+      player.sendMessage(Text.of("Pokémon already has the maximum level"));
+      return ActionResult.PASS;
     }
 
-    // if Level not max, increase by tier amount
-    pokemon.setLevel(currentLevel + actualIncrease);
-    player.sendMessage(Text.of("Increased Pokémon's Level by " + actualIncrease));
-    if (newLevel == maxLevel) { // if new Level amount is maxed, indicate to player
-      player.sendMessage(Text.of("Pokémon's Level is now at maximum"));
-    }
+    player.sendMessage(Text.of("Increased Pokémon's Level by " + (pokemon.getLevel() - level) + " to " + pokemon.getLevel()));
+
     itemStack.decrement(1); // remove item after use
     return ActionResult.SUCCESS;
   }
 
-  // Method to get the increaseAmount from the config based on the provided tier
-  private int getTierAmount(CobblemizerConfig config, String tierName) {
-    for (TierRarityClass tier : config.friendshipTiers) {
-      if (tier.name.equalsIgnoreCase(tierName)) {
-        return tier.tierAmount;
-      }
-    }
-    return 0; // Default value if tierName not found in config
-  }
-
   @Override
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
-    CobblemizerConfig config = CobblemizerConfig.Builder.load();
-
-    list.add(Text.of("Increase Pokémon's Level by up to " + getTierAmount(config, tier)));
+    list.add(Text.of("Increase Pokémon's Level by up to " + getTierAmount(LVL_TIERS, tier)));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }

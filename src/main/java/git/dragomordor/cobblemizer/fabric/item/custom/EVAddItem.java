@@ -4,9 +4,6 @@ import com.cobblemon.mod.common.api.pokemon.stats.Stat;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.EVs;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig;
-import git.dragomordor.cobblemizer.fabric.config.TierRarityClass;
-import net.minecraft.item.Item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -14,67 +11,44 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
 import java.util.List;
+import java.util.Map.Entry;
 
-import static git.dragomordor.cobblemizer.fabric.Cobblemizer.LOGGER;
+import static git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig.EV_TIERS;
+import static git.dragomordor.cobblemizer.fabric.config.TierRarityClass.getTierAmount;
 
 public class EVAddItem extends PokemonUseItem {
   private final String tier;
   private final Stat statToBoost;
 
   public EVAddItem(String tier, Stat statToBoost) {
-    super(new Item.Settings().maxCount(1));
+    super(new Settings().maxCount(1));
     this.tier = tier;
     this.statToBoost = statToBoost;
   }
 
   @Override
   public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-    CobblemizerConfig config = CobblemizerConfig.Builder.load();
-    int maxEV = EVs.MAX_STAT_VALUE; // Maximum EV value
     EVs evs = pokemon.getEvs(); // Current EV values
-    // Get the tierAmount from the config based on the provided tier
-    int tierAmount = getTierAmount(config, tier);
-    Integer currentEvBoxed = evs.get(this.statToBoost);
-    if(currentEvBoxed == null) {
-      LOGGER.warn("Invalid stat for item: {}", this.getClass().getSimpleName());
-      player.sendMessage(Text.of("Invalid EV associated w/ item."));
-      return ActionResult.FAIL;
-    }
-    int EVcurrentAmount = currentEvBoxed;
-    // Modify the Pokémon's EV by the obtained tierAmount
-    int newEVAmount = Math.min(EVcurrentAmount + tierAmount, maxEV);
-    int actualIncrease = newEVAmount - EVcurrentAmount;
+    int tierAmount = getTierAmount(EV_TIERS, tier); // Get tierAmount from config
+    int actualIncrease = evs.add(statToBoost, tierAmount); // Increase EV
+    int evAmount = evs.get(this.statToBoost) instanceof Integer evBoxed ? evBoxed : 0; // Get unboxed EV amount
 
-    if (actualIncrease <= 0) { // If EV is already at max, return fail
-      player.sendMessage(Text.of((statToBoost.getDisplayName().getString() + " EV is already at maximum")));
-      return ActionResult.FAIL;
+    if (actualIncrease == 0) { // If EV or EV Total are already at max, return pass
+      int evTotal = 0;
+      for (Entry<? extends Stat, ? extends Integer> stat : evs)
+        evTotal += (stat.getValue() instanceof Integer evBoxed ? evBoxed : 0);
+      player.sendMessage(Text.of("Pokémon already has the maximum " + (evTotal == EVs.MAX_TOTAL_VALUE ? "EV Total" : statToBoost.getDisplayName().getString() + " EV")));
+      return ActionResult.PASS;
     }
 
-    // if EV not max, increase by tier amount
-    evs.add(statToBoost, actualIncrease);
-    player.sendMessage(Text.of("Increased Pokémon's " + statToBoost.getDisplayName().getString() + " EV by " + actualIncrease));
-    if (newEVAmount == maxEV) { // if new EV amount is maxed, indicate to player
-      player.sendMessage(Text.of("Pokémon's " + statToBoost.getDisplayName().getString() + " EV is now at maximum"));
-    }
+    player.sendMessage(Text.of("Increased Pokémon's " + statToBoost.getDisplayName().getString() + " EV by " + actualIncrease + " to " + evAmount));
     itemStack.decrement(1); // remove item after use
     return ActionResult.SUCCESS;
   }
 
-  // Method to get the increaseAmount from the config based on the provided tier
-  private int getTierAmount(CobblemizerConfig config, String tierName) {
-    for (TierRarityClass tier : config.EVTiers) {
-      if (tier.name.equalsIgnoreCase(tierName)) {
-        return tier.tierAmount;
-      }
-    }
-    return 0; // Default value if tierName not found in config
-  }
-
   @Override
   public void appendTooltip(ItemStack itemStack, TooltipContext tooltipContext, List<Text> list, TooltipType tooltipType) {
-    CobblemizerConfig config = CobblemizerConfig.Builder.load();
-
-    list.add(Text.of("Increase Pokémon's " + statToBoost.getDisplayName().getString() + " EV by up to " + getTierAmount(config, tier)));
+    list.add(Text.of("Increase Pokémon's " + statToBoost.getDisplayName().getString() + " EV by up to " + getTierAmount(EV_TIERS, tier)));
 
     super.appendTooltip(itemStack, tooltipContext, list, tooltipType);
   }

@@ -13,6 +13,8 @@ public class Cobblemizer implements ModInitializer {
   public static final String MOD_ID = "cobblemizer"; // mod ID
   public static final String MOD_NAME = "Fae's Cobblemizer"; // mod ID
 
+  //TODO set the config values on modMenu update
+
   @Override
   public void onInitialize() {
     // Always load config file first

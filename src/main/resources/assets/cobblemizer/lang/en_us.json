@@ -40,6 +40,7 @@
   "item.cobblemizer.friendship_add_legendary": "Friendship increase - LEGENDARY",
   "item.cobblemizer.friendship_add_max": "Friendship MAX",
 
+  "item.cobblemizer.ev_clear": "All EV Clear",
   "item.cobblemizer.ev_random": "EV Random",
   "item.cobblemizer.ev_add_sp_atk_common": "Special Attack EV increase - COMMON",
   "item.cobblemizer.ev_add_sp_atk_uncommon": "Special Attack EV increase - UNCOMMON",
@@ -78,7 +79,8 @@
   "item.cobblemizer.ev_add_hp_legendary": "HP EV increase - LEGENDARY",
   "item.cobblemizer.ev_add_hp_max": "HP EV Max",
 
-  "item.cobblemizer.all_iv_maxer": "All IV Max",
+  "item.cobblemizer.iv_all_clear": "All IV Clear",
+  "item.cobblemizer.iv_all_max": "All IV Max",
   "item.cobblemizer.iv_random": "IV Random",
   "item.cobblemizer.iv_add_sp_atk_common": "Special Attack IV increase - COMMON",
   "item.cobblemizer.iv_add_sp_atk_uncommon": "Special Attack IV increase - UNCOMMON",

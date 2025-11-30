@@ -13,6 +13,8 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -22,17 +24,22 @@ public class EVRandomItem extends PokemonUseItem {
     super(new Item.Settings().maxCount(1));
   }
 
-  // TODO: fix ignored total EVs
-
   @Override
   public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-    EVs evs = pokemon.getEvs(); // Access the EVs of the Pokémon
     Random random = new Random(); // random number generator
+    List<Stat> statsList = new ArrayList<>();
+    Collections.addAll(statsList, Stats.values()); // add the Stats to the Stat List
 
-    // Randomize all EV stats
-    for (Stat stat : Stats.values()) {
+    while (!statsList.isEmpty()) { // Loop randomly through the Stat List until there are no elements left
+      int stat = random.nextInt(statsList.size()); // Generate a random value between 0 & the size of the statsList (exclusive)
       int randomValue = random.nextInt(EVs.MAX_STAT_VALUE + 1); // Generate a random value between 0 and MAX_STAT_VALUE (inclusive)
-      evs.set(stat, randomValue); // Set each EV stat to the generated random value
+
+      if (pokemon.getEvs().get(statsList.get(stat)) instanceof Integer) {
+        pokemon.setEV(statsList.get(stat), randomValue); // Set the NonNull EV stat to the generated random value
+      }
+
+      player.sendMessage(Text.of(statsList.get(stat).getDisplayName().getString() + " EV: " + pokemon.getEvs().get(statsList.get(stat))));
+      statsList.remove(stat); // Remove the randomly generated stat entry from the statsList
     }
 
     itemStack.decrement(1); // remove item after use

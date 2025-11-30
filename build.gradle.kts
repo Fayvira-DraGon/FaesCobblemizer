@@ -1,9 +1,9 @@
-val deleteRunConfigs by tasks.registering(Delete::class) {
-  delete(file(".idea/runConfigurations"))
+val deleteFiles by tasks.registering(Delete::class) {
+  delete(/* ...targets = */file(".idea/runConfigurations"))
 }
 
 tasks.named("ideaSyncTask") {
-  dependsOn(deleteRunConfigs)
+  dependsOn(deleteFiles)
 }
 
 plugins {
@@ -13,8 +13,15 @@ plugins {
   kotlin("jvm") version "2.2.10"
 }
 
-group = "${project.property("mod_group_id")}"
+group = "${project.property("mod_group")}"
 version = "${project.property("mod_version")}"
+
+java {
+  withSourcesJar()
+
+  sourceCompatibility = JavaVersion.toVersion(project.property("java_version") as Integer)
+  targetCompatibility = JavaVersion.toVersion(project.property("java_version") as Integer)
+}
 
 architectury {
   platformSetupLoomIde()
@@ -26,7 +33,7 @@ loom {
 
   @Suppress("UnstableApiUsage")
   mixin {
-    defaultRefmapName.set("mixins.${project.name}.refmap.json")
+    defaultRefmapName.set("mixins.${project.property("mod_id")}.refmap.json")
   }
 
   runs {
@@ -50,12 +57,13 @@ repositories {
   maven("https://maven.impactdev.net/repository/development/") { name = "Cobblemon" }
   maven("https://oss.sonatype.org/content/repositories/snapshots") { name = "Cobblemon" }
   maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1") { name = "DevAuth" }
-  maven("https://maven.wispforest.io/releases/") { name = "oωo" }
+  // maven("https://maven.wispforest.io/releases/") { name = "oωo" }
 }
 
 dependencies {
+  implementation(kotlin("stdlib-${project.property("kotlin_stdlib")}"))
   minecraft("net.minecraft:minecraft:${project.property("minecraft_version")}")
-  mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}")
+  mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
   modImplementation("net.fabricmc:fabric-loader:${project.property("fabric_loader_version")}")
 
   modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_api_version")}")
@@ -64,9 +72,10 @@ dependencies {
   modImplementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_version")}")
 
   modImplementation("com.cobblemon:fabric:${project.property("cobblemon_version")}")
-  modImplementation("io.wispforest:owo-lib:${project.property("owo_version")}")
-  annotationProcessor("io.wispforest:owo-lib:${project.property("owo_version")}")
-  include("io.wispforest:owo-sentinel:${project.property("owo_version")}")
+
+  // modImplementation("io.wispforest:owo-lib:${project.property("owo_version")}")
+  // annotationProcessor("io.wispforest:owo-lib:${project.property("owo_version")}")
+  // include("io.wispforest:owo-sentinel:${project.property("owo_version")}")
 
   modCompileOnly("maven.modrinth:cobbreeding:${project.property("cobbreeding_version")}") // cobbreeding
 
