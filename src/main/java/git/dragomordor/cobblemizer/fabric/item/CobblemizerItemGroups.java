@@ -97,7 +97,7 @@ public class CobblemizerItemGroups {
       entries.add(EV_ADD_HP_LEGENDARY);
       entries.add(EV_ADD_HP_MAX);
       // IVMaxer
-      entries.add(ALL_IV_MAXER);
+      entries.add(IV_ALL_MAX);
       // IVRandom
       entries.add(IV_RANDOM);
       // IVAddItem

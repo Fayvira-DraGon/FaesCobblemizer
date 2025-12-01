@@ -10,12 +10,16 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-// TODO: condense helper methods using .class & new settings
+// TODO: condense helper methods using .class & settings
 
 @SuppressWarnings("SameParameterValue")
 public class CobblemizerItems {
-  // register IVMaxerItems
-  public static final IVMaxerItem ALL_IV_MAXER = registerIVMaxerItem("all_iv_maxer", new IVMaxerItem());
+  // register IVMaxItems
+  //public static final PokemonUseItem IV_ALL_CLEAR = registerPokemonUseItem("ev_all_clear", new EVAllClearItem());
+  // register IVMaxItems
+  //public static final PokemonUseItem EV_ALL_CLEAR = registerPokemonUseItem("iv_all_clear", new IVAllClearItem());
+  // register IVMaxItems
+  public static final IVAllMaxItem IV_ALL_MAX = registerIVAllMaxItem("iv_all_max", new IVAllMaxItem());
   // register IVRandomItem
   public static final IVRandomItem IV_RANDOM = registerIVRandomItem("iv_random", new IVRandomItem());
   // register EVRandomItem
@@ -190,8 +194,18 @@ public class CobblemizerItems {
     return Registry.register(Registries.ITEM, Identifier.of(Cobblemizer.MOD_ID, name), pokemonUseItem);
   }
 
+  // Register IVAllClearItem item type
+  //private static IVAllClearItem registerIVAllClearItem(String name, IVAllClearItem ivAllClearItem) {
+  //  return Registry.register(Registries.ITEM, Identifier.of(Cobblemizer.MOD_ID, name), ivAllClearItem);
+  //}
+
+  // Register EVAllClearItem item type
+  //private static EVAllClearItem registerEVAllClearItem(String name, EVAllClearItem evAllClearItem) {
+  //  return Registry.register(Registries.ITEM, Identifier.of(Cobblemizer.MOD_ID, name), evAllClearItem);
+  //}
+
   //Register IVMaxer item type
-  private static IVMaxerItem registerIVMaxerItem(String name, IVMaxerItem ivMaxerItem) {
+  private static IVAllMaxItem registerIVAllMaxItem(String name, IVAllMaxItem ivMaxerItem) {
     return Registry.register(Registries.ITEM, Identifier.of(Cobblemizer.MOD_ID, name), ivMaxerItem);
   }
 
