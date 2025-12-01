@@ -1,5 +1,6 @@
 package git.dragomordor.cobblemizer.fabric.item.custom;
 
+import com.cobblemon.mod.common.api.pokemon.stats.ItemEvSource;
 import com.cobblemon.mod.common.api.pokemon.stats.Stat;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.EVs;
@@ -7,6 +8,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
