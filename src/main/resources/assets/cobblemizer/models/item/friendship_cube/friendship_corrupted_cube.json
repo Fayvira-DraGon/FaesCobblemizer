@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "cobblemizer:item/friendship_cube/friendship_corrupted_cube"
+  }
+}

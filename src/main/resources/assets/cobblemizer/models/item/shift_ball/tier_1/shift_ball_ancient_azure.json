@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cobblemizer:item/shift_ball/tier_1/shift_ball_ancient_azure"
+  }
+}

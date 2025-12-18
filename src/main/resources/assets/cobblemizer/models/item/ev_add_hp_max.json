@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "cobblemizer:item/ev/ev_add_hp_max"
-  }
-}

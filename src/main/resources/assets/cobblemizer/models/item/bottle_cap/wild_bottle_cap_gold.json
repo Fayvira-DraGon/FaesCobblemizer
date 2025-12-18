@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cobblemizer:item/bottle_cap/wild_bottle_cap_gold"
+  }
+}

@@ -16,9 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "git.dragomordor.cobblemizer.fabric.Cobblemizer"
+      "github.fayvira.fabric.cobblemizer.Cobblemizer"
     ]
   },
+  "mixins": [ ],
   "depends": {
     "fabricloader": "*",
     "fabric-api": "*",

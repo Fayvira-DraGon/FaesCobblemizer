@@ -8,7 +8,7 @@ tasks.named("ideaSyncTask") {
 
 plugins {
   id("java")
-  id("dev.architectury.loom") version ("1.9-SNAPSHOT")
+  id("dev.architectury.loom") version ("1.10-SNAPSHOT")
   id("architectury-plugin") version ("3.4-SNAPSHOT")
   kotlin("jvm") version "2.2.10"
 }
@@ -19,8 +19,14 @@ version = "${project.property("mod_version")}"
 java {
   withSourcesJar()
 
-  sourceCompatibility = JavaVersion.toVersion(project.property("java_version") as Integer)
-  targetCompatibility = JavaVersion.toVersion(project.property("java_version") as Integer)
+  sourceCompatibility = JavaVersion.toVersion((project.property("java_version") as String).toInt())
+  targetCompatibility = JavaVersion.toVersion((project.property("java_version") as String).toInt())
+}
+
+kotlin {
+  compilerOptions {
+    freeCompilerArgs.add("-Xannotation-target-all")
+  }
 }
 
 architectury {
@@ -43,6 +49,7 @@ loom {
       property("mixin.dumpTargetOnFailure", "true")
       property("devauth.enabled", "true") // devauth: enable
       property("devauth.account", "main") // account type: minecraft
+      property("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE") // see individual untranslated item tags
       programArg("--width=${project.property("window_width")}")
       programArg("--height=${project.property("window_height")}")
       ideConfigGenerated(true)
@@ -71,6 +78,7 @@ dependencies {
   modImplementation(fabricApi.module("${project.property("fabric_command_api_version")}", "${project.property("fabric_api_version")}"))
   modImplementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_version")}")
 
+  modImplementation("com.cobblemon:fabric:${project.property("cobblemon_version")}-sources")
   modImplementation("com.cobblemon:fabric:${project.property("cobblemon_version")}")
 
   // modImplementation("io.wispforest:owo-lib:${project.property("owo_version")}")

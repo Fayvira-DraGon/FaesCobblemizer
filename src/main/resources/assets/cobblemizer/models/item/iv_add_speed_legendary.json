@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "cobblemizer:item/iv/iv_add_speed"
-  }
-}
