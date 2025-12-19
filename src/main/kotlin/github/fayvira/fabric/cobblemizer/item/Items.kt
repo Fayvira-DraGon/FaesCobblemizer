@@ -53,6 +53,7 @@ import github.fayvira.fabric.cobblemizer.Cobblemizer.Companion.LOGGER
 import github.fayvira.fabric.cobblemizer.Cobblemizer.Companion.MOD_ID
 import github.fayvira.fabric.cobblemizer.Cobblemizer.Companion.MOD_NAME
 import github.fayvira.fabric.cobblemizer.item.custom.*
+import net.minecraft.item.Item.Settings
 import net.minecraft.item.ItemGroup.*
 import net.minecraft.item.ItemStack
 import net.minecraft.registry.Registries.ITEM
@@ -64,110 +65,110 @@ import net.minecraft.util.Identifier
 object Items {
   // BottleCapItem
   // base bottle caps
-  val BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_black"), BottleCapItem(ATTACK))
-  val BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_blue"), BottleCapItem(SPECIAL_ATTACK))
+  val BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_black"), BottleCapItem(stat = ATTACK))
+  val BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_blue"), BottleCapItem(stat = SPECIAL_ATTACK))
   val BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_gold"), BottleCapItem())
-  val BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_green"), BottleCapItem(SPECIAL_DEFENCE))
-  val BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_pink"), BottleCapItem(SPEED))
-  val BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_red"), BottleCapItem(HP))
-  val BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_yellow"), BottleCapItem(DEFENCE))
+  val BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_green"), BottleCapItem(stat = SPECIAL_DEFENCE))
+  val BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_pink"), BottleCapItem(stat = SPEED))
+  val BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_red"), BottleCapItem(stat = HP))
+  val BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_yellow"), BottleCapItem(stat = DEFENCE))
 
   // void bottle caps
-  val VOID_BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_black"), BottleCapItem(ATTACK, 0))
-  val VOID_BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_blue"), BottleCapItem(SPECIAL_ATTACK, 0))
-  val VOID_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_gold"), BottleCapItem(iv =  0))
-  val VOID_BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_green"), BottleCapItem(SPECIAL_DEFENCE, 0))
-  val VOID_BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_pink"), BottleCapItem(SPEED, 0))
-  val VOID_BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_red"), BottleCapItem(HP, 0))
-  val VOID_BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_yellow"), BottleCapItem(DEFENCE, 0))
+  val VOID_BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_black"), BottleCapItem(stat = ATTACK, iv = 0))
+  val VOID_BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_blue"), BottleCapItem(stat = SPECIAL_ATTACK, iv = 0))
+  val VOID_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_gold"), BottleCapItem(iv = 0))
+  val VOID_BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_green"), BottleCapItem(stat = SPECIAL_DEFENCE, iv = 0))
+  val VOID_BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_pink"), BottleCapItem(stat = SPEED, iv = 0))
+  val VOID_BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_red"), BottleCapItem(stat = HP, iv = 0))
+  val VOID_BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_yellow"), BottleCapItem(stat = DEFENCE, iv = 0))
 
   // wild bottle caps
-  val WILD_BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_black"), BottleCapItem(ATTACK, -1))
-  val WILD_BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_blue"), BottleCapItem(SPECIAL_ATTACK, -1))
-  val WILD_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_gold"), BottleCapItem(iv =  -1))
-  val WILD_BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_green"), BottleCapItem(SPECIAL_DEFENCE, -1 - 1))
-  val WILD_BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_pink"), BottleCapItem(SPEED, -1))
-  val WILD_BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_red"), BottleCapItem(HP, -1))
-  val WILD_BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_yellow"), BottleCapItem(DEFENCE, -1))
+  val WILD_BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_black"), BottleCapItem(stat = ATTACK, iv = -1))
+  val WILD_BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_blue"), BottleCapItem(stat = SPECIAL_ATTACK, iv = -1))
+  val WILD_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_gold"), BottleCapItem(iv = -1))
+  val WILD_BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_green"), BottleCapItem(stat = SPECIAL_DEFENCE, iv = -1))
+  val WILD_BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_pink"), BottleCapItem(stat = SPEED, iv = -1))
+  val WILD_BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_red"), BottleCapItem(stat = HP, iv = -1))
+  val WILD_BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_yellow"), BottleCapItem(stat = DEFENCE, iv = -1))
 
   // FriendshipCubeItem
-  val FRIENDSHIP_CORRUPTED_CUBE: FriendshipCubeItem = register(ITEM, Identifier.of(MOD_ID, "friendship_cube/friendship_corrupted_cube"), FriendshipCubeItem(1))
+  val FRIENDSHIP_CORRUPTED_CUBE: FriendshipCubeItem = register(ITEM, Identifier.of(MOD_ID, "friendship_cube/friendship_corrupted_cube"), FriendshipCubeItem(friendship = 1))
   val FRIENDSHIP_PERFECT_CUBE: FriendshipCubeItem = register(ITEM, Identifier.of(MOD_ID, "friendship_cube/friendship_perfect_cube"), FriendshipCubeItem())
-  val FRIENDSHIP_UNIDENTIFIED_CUBE: FriendshipCubeItem = register(ITEM, Identifier.of(MOD_ID, "friendship_cube/friendship_unidentified_cube"), FriendshipCubeItem(0))
+  val FRIENDSHIP_UNIDENTIFIED_CUBE: FriendshipCubeItem = register(ITEM, Identifier.of(MOD_ID, "friendship_cube/friendship_unidentified_cube"), FriendshipCubeItem(friendship = 0))
 
   // GenderItem
   val GENDER_CRYSTAL: GenderItem = register(ITEM, Identifier.of(MOD_ID, "gender/gender_crystal"), GenderItem())
-  val GENDER_FLUID: GenderItem = register(ITEM, Identifier.of(MOD_ID, "gender/gender_fluid"), GenderItem(true))
+  val GENDER_FLUID: GenderItem = register(ITEM, Identifier.of(MOD_ID, "gender/gender_fluid"), GenderItem(fluid = true))
 
   // LevelCandyItem
-  val LEVEL_CANDY_CHAOS: LevelCandyItem = register(ITEM, Identifier.of(MOD_ID, "level_candy/level_candy_chaos"), LevelCandyItem(0))
-  val LEVEL_CANDY_SPOILED: LevelCandyItem = register(ITEM, Identifier.of(MOD_ID, "level_candy/level_candy_spoiled"), LevelCandyItem(1))
+  val LEVEL_CANDY_CHAOS: LevelCandyItem = register(ITEM, Identifier.of(MOD_ID, "level_candy/level_candy_chaos"), LevelCandyItem(level = 0))
+  val LEVEL_CANDY_SPOILED: LevelCandyItem = register(ITEM, Identifier.of(MOD_ID, "level_candy/level_candy_spoiled"), LevelCandyItem(level = 1))
   val LEVEL_CANDY_ULTIMATE: LevelCandyItem = register(ITEM, Identifier.of(MOD_ID, "level_candy/level_candy_ultimate"), LevelCandyItem())
 
   // ShiftBallItem
   // tier 1 balls
-  val SHIFT_BALL_ANCIENT_AZURE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_azure"), ShiftBallItem(ANCIENT_AZURE_BALL))
-  val SHIFT_BALL_ANCIENT_CITRINE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_citrine"), ShiftBallItem(ANCIENT_CITRINE_BALL))
-  val SHIFT_BALL_ANCIENT_FEATHER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_feather"), ShiftBallItem(ANCIENT_FEATHER_BALL))
-  val SHIFT_BALL_ANCIENT_HEAVY: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_heavy"), ShiftBallItem(ANCIENT_HEAVY_BALL))
-  val SHIFT_BALL_ANCIENT_IVORY: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_ivory"), ShiftBallItem(ANCIENT_IVORY_BALL))
-  val SHIFT_BALL_ANCIENT_POKE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_poke"), ShiftBallItem(ANCIENT_POKE_BALL))
-  val SHIFT_BALL_ANCIENT_ROSEATE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_roseate"), ShiftBallItem(ANCIENT_ROSEATE_BALL))
-  val SHIFT_BALL_ANCIENT_SLATE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_slate"), ShiftBallItem(ANCIENT_SLATE_BALL))
-  val SHIFT_BALL_ANCIENT_VERDANT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_verdant"), ShiftBallItem(ANCIENT_VERDANT_BALL))
+  val SHIFT_BALL_ANCIENT_AZURE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_azure"), ShiftBallItem(selectedBall = ANCIENT_AZURE_BALL))
+  val SHIFT_BALL_ANCIENT_CITRINE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_citrine"), ShiftBallItem(selectedBall = ANCIENT_CITRINE_BALL))
+  val SHIFT_BALL_ANCIENT_FEATHER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_feather"), ShiftBallItem(selectedBall = ANCIENT_FEATHER_BALL))
+  val SHIFT_BALL_ANCIENT_HEAVY: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_heavy"), ShiftBallItem(selectedBall = ANCIENT_HEAVY_BALL))
+  val SHIFT_BALL_ANCIENT_IVORY: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_ivory"), ShiftBallItem(selectedBall = ANCIENT_IVORY_BALL))
+  val SHIFT_BALL_ANCIENT_POKE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_poke"), ShiftBallItem(selectedBall = ANCIENT_POKE_BALL))
+  val SHIFT_BALL_ANCIENT_ROSEATE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_roseate"), ShiftBallItem(selectedBall = ANCIENT_ROSEATE_BALL))
+  val SHIFT_BALL_ANCIENT_SLATE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_slate"), ShiftBallItem(selectedBall = ANCIENT_SLATE_BALL))
+  val SHIFT_BALL_ANCIENT_VERDANT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_verdant"), ShiftBallItem(selectedBall = ANCIENT_VERDANT_BALL))
 
-  val SHIFT_BALL_AZURE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_azure"), ShiftBallItem(AZURE_BALL))
-  val SHIFT_BALL_CITRINE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_citrine"), ShiftBallItem(CITRINE_BALL))
-  val SHIFT_BALL_HEAL: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_heal"), ShiftBallItem(HEAL_BALL))
-  val SHIFT_BALL_POKE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_poke"), ShiftBallItem(POKE_BALL))
-  val SHIFT_BALL_PREMIER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_premier"), ShiftBallItem(PREMIER_BALL))
-  val SHIFT_BALL_ROSEATE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_roseate"), ShiftBallItem(ROSEATE_BALL))
-  val SHIFT_BALL_SAFARI: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_safari"), ShiftBallItem(SAFARI_BALL))
-  val SHIFT_BALL_SLATE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_slate"), ShiftBallItem(SLATE_BALL))
-  val SHIFT_BALL_VERDANT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_verdant"), ShiftBallItem(VERDANT_BALL))
+  val SHIFT_BALL_AZURE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_azure"), ShiftBallItem(selectedBall = AZURE_BALL))
+  val SHIFT_BALL_CITRINE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_citrine"), ShiftBallItem(selectedBall = CITRINE_BALL))
+  val SHIFT_BALL_HEAL: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_heal"), ShiftBallItem(selectedBall = HEAL_BALL))
+  val SHIFT_BALL_POKE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_poke"), ShiftBallItem(selectedBall = POKE_BALL))
+  val SHIFT_BALL_PREMIER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_premier"), ShiftBallItem(selectedBall = PREMIER_BALL))
+  val SHIFT_BALL_ROSEATE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_roseate"), ShiftBallItem(selectedBall = ROSEATE_BALL))
+  val SHIFT_BALL_SAFARI: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_safari"), ShiftBallItem(selectedBall = SAFARI_BALL))
+  val SHIFT_BALL_SLATE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_slate"), ShiftBallItem(selectedBall = SLATE_BALL))
+  val SHIFT_BALL_VERDANT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_verdant"), ShiftBallItem(selectedBall = VERDANT_BALL))
 
   // tier 2 balls
-  val SHIFT_BALL_ANCIENT_GREAT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_ancient_great"), ShiftBallItem(ANCIENT_GREAT_BALL))
-  val SHIFT_BALL_ANCIENT_LEADEN: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_ancient_leaden"), ShiftBallItem(ANCIENT_LEADEN_BALL))
-  val SHIFT_BALL_ANCIENT_WING: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_ancient_wing"), ShiftBallItem(ANCIENT_WING_BALL))
-  val SHIFT_BALL_DIVE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_dive"), ShiftBallItem(DIVE_BALL))
-  val SHIFT_BALL_FAST: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_fast"), ShiftBallItem(FAST_BALL))
-  val SHIFT_BALL_FRIEND: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_friend"), ShiftBallItem(FRIEND_BALL))
-  val SHIFT_BALL_GREAT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_great"), ShiftBallItem(GREAT_BALL))
-  val SHIFT_BALL_HEAVY: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_heavy"), ShiftBallItem(HEAVY_BALL))
-  val SHIFT_BALL_LEVEL: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_level"), ShiftBallItem(LEVEL_BALL))
-  val SHIFT_BALL_LURE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_lure"), ShiftBallItem(LURE_BALL))
-  val SHIFT_BALL_MOON: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_moon"), ShiftBallItem(MOON_BALL))
-  val SHIFT_BALL_NEST: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_nest"), ShiftBallItem(NEST_BALL))
-  val SHIFT_BALL_NET: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_net"), ShiftBallItem(NET_BALL))
-  val SHIFT_BALL_PARK: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_park"), ShiftBallItem(PARK_BALL))
-  val SHIFT_BALL_SPORT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_sport"), ShiftBallItem(SPORT_BALL))
+  val SHIFT_BALL_ANCIENT_GREAT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_ancient_great"), ShiftBallItem(selectedBall = ANCIENT_GREAT_BALL))
+  val SHIFT_BALL_ANCIENT_LEADEN: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_ancient_leaden"), ShiftBallItem(selectedBall = ANCIENT_LEADEN_BALL))
+  val SHIFT_BALL_ANCIENT_WING: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_ancient_wing"), ShiftBallItem(selectedBall = ANCIENT_WING_BALL))
+  val SHIFT_BALL_DIVE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_dive"), ShiftBallItem(selectedBall = DIVE_BALL))
+  val SHIFT_BALL_FAST: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_fast"), ShiftBallItem(selectedBall = FAST_BALL))
+  val SHIFT_BALL_FRIEND: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_friend"), ShiftBallItem(selectedBall = FRIEND_BALL))
+  val SHIFT_BALL_GREAT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_great"), ShiftBallItem(selectedBall = GREAT_BALL))
+  val SHIFT_BALL_HEAVY: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_heavy"), ShiftBallItem(selectedBall = HEAVY_BALL))
+  val SHIFT_BALL_LEVEL: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_level"), ShiftBallItem(selectedBall = LEVEL_BALL))
+  val SHIFT_BALL_LURE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_lure"), ShiftBallItem(selectedBall = LURE_BALL))
+  val SHIFT_BALL_MOON: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_moon"), ShiftBallItem(selectedBall = MOON_BALL))
+  val SHIFT_BALL_NEST: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_nest"), ShiftBallItem(selectedBall = NEST_BALL))
+  val SHIFT_BALL_NET: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_net"), ShiftBallItem(selectedBall = NET_BALL))
+  val SHIFT_BALL_PARK: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_park"), ShiftBallItem(selectedBall = PARK_BALL))
+  val SHIFT_BALL_SPORT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_sport"), ShiftBallItem(selectedBall = SPORT_BALL))
 
   // tier 3 balls
-  val SHIFT_BALL_ANCIENT_GIGATON: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ancient_gigaton"), ShiftBallItem(ANCIENT_GIGATON_BALL))
-  val SHIFT_BALL_ANCIENT_JET: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ancient_jet"), ShiftBallItem(ANCIENT_JET_BALL))
-  val SHIFT_BALL_ANCIENT_ULTRA: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ancient_ultra"), ShiftBallItem(ANCIENT_ULTRA_BALL))
-  val SHIFT_BALL_DUSK: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_dusk"), ShiftBallItem(DUSK_BALL))
-  val SHIFT_BALL_LOVE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_love"), ShiftBallItem(LOVE_BALL))
-  val SHIFT_BALL_LUXURY: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_luxury"), ShiftBallItem(LUXURY_BALL))
-  val SHIFT_BALL_QUICK: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_quick"), ShiftBallItem(QUICK_BALL))
-  val SHIFT_BALL_REPEAT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_repeat"), ShiftBallItem(REPEAT_BALL))
-  val SHIFT_BALL_TIMER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_timer"), ShiftBallItem(TIMER_BALL))
-  val SHIFT_BALL_ULTRA: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ultra"), ShiftBallItem(ULTRA_BALL))
+  val SHIFT_BALL_ANCIENT_GIGATON: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ancient_gigaton"), ShiftBallItem(selectedBall = ANCIENT_GIGATON_BALL))
+  val SHIFT_BALL_ANCIENT_JET: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ancient_jet"), ShiftBallItem(selectedBall = ANCIENT_JET_BALL))
+  val SHIFT_BALL_ANCIENT_ULTRA: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ancient_ultra"), ShiftBallItem(selectedBall = ANCIENT_ULTRA_BALL))
+  val SHIFT_BALL_DUSK: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_dusk"), ShiftBallItem(selectedBall = DUSK_BALL))
+  val SHIFT_BALL_LOVE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_love"), ShiftBallItem(selectedBall = LOVE_BALL))
+  val SHIFT_BALL_LUXURY: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_luxury"), ShiftBallItem(selectedBall = LUXURY_BALL))
+  val SHIFT_BALL_QUICK: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_quick"), ShiftBallItem(selectedBall = QUICK_BALL))
+  val SHIFT_BALL_REPEAT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_repeat"), ShiftBallItem(selectedBall = REPEAT_BALL))
+  val SHIFT_BALL_TIMER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_timer"), ShiftBallItem(selectedBall = TIMER_BALL))
+  val SHIFT_BALL_ULTRA: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ultra"), ShiftBallItem(selectedBall = ULTRA_BALL))
 
   // tier 4 balls
-  val SHIFT_BALL_BEAST: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_4/shift_ball_beast"), ShiftBallItem(BEAST_BALL))
-  val SHIFT_BALL_DREAM: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_4/shift_ball_dream"), ShiftBallItem(DREAM_BALL))
+  val SHIFT_BALL_BEAST: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_4/shift_ball_beast"), ShiftBallItem(selectedBall = BEAST_BALL))
+  val SHIFT_BALL_DREAM: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_4/shift_ball_dream"), ShiftBallItem(selectedBall = DREAM_BALL))
 
   // tier 5 balls
-  val SHIFT_BALL_ANCIENT_ORIGIN: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_ancient_origin"), ShiftBallItem(ANCIENT_ORIGIN_BALL))
-  val SHIFT_BALL_CHERISH: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_cherish"), ShiftBallItem(CHERISH_BALL))
-  val SHIFT_BALL_MASTER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_master"), ShiftBallItem(MASTER_BALL))
+  val SHIFT_BALL_ANCIENT_ORIGIN: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_ancient_origin"), ShiftBallItem(selectedBall = ANCIENT_ORIGIN_BALL))
+  val SHIFT_BALL_CHERISH: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_cherish"), ShiftBallItem(selectedBall = CHERISH_BALL))
+  val SHIFT_BALL_MASTER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_master"), ShiftBallItem(selectedBall = MASTER_BALL))
 
   // ShinyItem
-  val SHINY_CAPSULE: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_capsule"), ShinyItem(true))
+  val SHINY_CAPSULE: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_capsule"), ShinyItem(capsule = true, settings = Settings().maxCount(1)))
   val SHINY_CRYSTAL: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_crystal"), ShinyItem())
-  val SHINY_FLUID: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_fluid"), ShinyItem(null))
+  val SHINY_FLUID: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_fluid"), ShinyItem(capsule = null))
 
   // register all mod items function
   fun init() {
