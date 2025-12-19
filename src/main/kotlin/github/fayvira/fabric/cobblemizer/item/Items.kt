@@ -75,7 +75,7 @@ object Items {
   // void bottle caps
   val VOID_BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_black"), BottleCapItem(ATTACK, 0))
   val VOID_BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_blue"), BottleCapItem(SPECIAL_ATTACK, 0))
-  val VOID_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_gold"), BottleCapItem(0))
+  val VOID_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_gold"), BottleCapItem(iv =  0))
   val VOID_BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_green"), BottleCapItem(SPECIAL_DEFENCE, 0))
   val VOID_BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_pink"), BottleCapItem(SPEED, 0))
   val VOID_BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_red"), BottleCapItem(HP, 0))
@@ -84,7 +84,7 @@ object Items {
   // wild bottle caps
   val WILD_BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_black"), BottleCapItem(ATTACK, -1))
   val WILD_BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_blue"), BottleCapItem(SPECIAL_ATTACK, -1))
-  val WILD_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_gold"), BottleCapItem(-1))
+  val WILD_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_gold"), BottleCapItem(iv =  -1))
   val WILD_BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_green"), BottleCapItem(SPECIAL_DEFENCE, -1 - 1))
   val WILD_BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_pink"), BottleCapItem(SPEED, -1))
   val WILD_BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_red"), BottleCapItem(HP, -1))

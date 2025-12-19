@@ -32,7 +32,7 @@ class ShinyItem(
   override fun appendTooltip(stack: ItemStack, context: TooltipContext, tooltip: MutableList<Text>, type: TooltipType) {
     val species: Species? = stack.get(SPECIES_COMPONENT)
     tooltip.add(
-      Text.of(if (capsule == null) "Swap Pokémon's Shiny Appearance" else (if (capsule) (if (species == null) "Capture a Pokémon's Shiny Status" else "Apply Captured Shiny Status to a Pokémon in the ${species.name} Family") else "Swap Pokémon's Shiny Status"))
+      Text.of(if (capsule == null) "Swap Pokémon's Shiny Appearance" else (if (capsule) (if (species == null) "Capture Pokémon's Shiny Status" else "Apply Captured Shiny Status to Pokémon in the ${species.name} Family") else "Swap Pokémon's Shiny Status"))
     )
     super.appendTooltip(stack, context, tooltip, type)
   }
@@ -45,7 +45,7 @@ class ShinyItem(
     val shiny: Boolean = pokemon.shiny
     return if (capsule == null) {
       player.sendMessage(Text.of("Shiny Fluid is not yet ready for use!"))
-      // player.sendMessage(Text.of("Successfully swapped the Pokémon's Shiny Appearance!"))
+      // player.sendMessage(Text.of("Swapped Pokémon's Shiny Appearance!"))
       pokemon.entity?.playSound(failure, 1F, 1F)
       // pokemon.entity?.playSound(success, 1F, 1F)
       fail(stack)
@@ -56,7 +56,7 @@ class ShinyItem(
         if (shiny) {
           pokemon.shiny = false
           stack.set(SPECIES_COMPONENT, pokemon.species)
-          player.sendMessage(Text.of("Successfully captured the Pokémon's Shiny Status!"))
+          player.sendMessage(Text.of("Captured Pokémon's Shiny Status!"))
           pokemon.entity?.playSound(success, 1F, 1F)
           success(stack)
         } else {
@@ -74,7 +74,7 @@ class ShinyItem(
           if (line) {
             pokemon.shiny = true
             stack.set(SPECIES_COMPONENT, getFirst(pokemon.species))
-            player.sendMessage(Text.of("Successfully applied the Shiny Status!"))
+            player.sendMessage(Text.of("Applied the Captured Shiny Status!"))
             pokemon.entity?.playSound(success, 1F, 1F)
             stack.decrement(1)
             success(stack)

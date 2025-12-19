@@ -40,7 +40,7 @@ class GenderItem(
   ): TypedActionResult<ItemStack> {
     return if (fluid) {
       player.sendMessage(Text.of("Gender Fluid is not yet ready for use!"))
-      // player.sendMessage(Text.of("Successfully, Swapped Pokémon's Gender Appearance!"))
+      // player.sendMessage(Text.of("Swapped Pokémon's Gender Appearance!"))
       pokemon.entity?.playSound(failure, 1F, 1F)
       // pokemon.entity?.playSound(success, 1F, 1F)
       fail(stack)
@@ -52,7 +52,7 @@ class GenderItem(
         fail(stack)
       } else {
         pokemon.gender = if (pokemon.gender == Gender.MALE) Gender.FEMALE else Gender.MALE
-        player.sendMessage(Text.of("Successfully, Swapped Pokémon's Gender to ${pokemon.gender.name}!"))
+        player.sendMessage(Text.of("Pokémon's Gender is now ${pokemon.gender.name}!"))
         pokemon.entity?.playSound(success, 1F, 1F)
         stack.decrementUnlessCreative(1, player)
         success(stack)

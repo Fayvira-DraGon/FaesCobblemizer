@@ -1,4 +1,4 @@
-rootProject.name = "Fae's Cobblemizer" //By default, this is how your built jar is called
+rootProject.name = "Fae's Cobblemizer Redux" //By default, this is how your built jar is called
 
 pluginManagement {
     repositories {

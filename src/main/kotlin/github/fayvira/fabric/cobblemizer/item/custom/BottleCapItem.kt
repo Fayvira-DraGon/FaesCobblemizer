@@ -27,9 +27,6 @@ class BottleCapItem(
   val iv: Int = MAX_VALUE,
   settings: Settings = Settings().maxCount(16)
 ) : CobblemonItem(settings), PokemonSelectingItem {
-  constructor() : this(null, MAX_VALUE)
-  constructor(stat: Stat? = null) : this(stat, MAX_VALUE)
-  constructor(iv: Int = MAX_VALUE) : this(null, iv)
 
   override val bagItem: BagItem? = null
   val success: SoundEvent = ITEM_USE
@@ -37,7 +34,7 @@ class BottleCapItem(
   val acceptableRange = 0.. MAX_VALUE
 
   override fun appendTooltip(stack: ItemStack, context: TooltipContext, tooltip: MutableList<Text>, type: TooltipType) {
-    tooltip.add(Text.of((if (iv < 0) "Randomize " else "Set ") + (if (stat == null) "All of a Pokémon's IVs" else "a Pokémon's ${stat.displayName.string} IV") + (if (iv < 0) "" else " to ${iv.coerceIn(acceptableRange)}")))
+    tooltip.add(Text.of((if (iv < 0) "Randomize " else "Set ") + (if (stat == null) "All of Pokémon's IVs" else "Pokémon's ${stat.displayName.string} IV") + (if (iv < 0) "" else " to ${iv.coerceIn(acceptableRange)}")))
     super.appendTooltip(stack, context, tooltip, type)
   }
 
@@ -48,14 +45,17 @@ class BottleCapItem(
   ): TypedActionResult<ItemStack> {
     if (stat == null) {
       if (iv < 0) {
-        val ivs: IVs = pokemon.ivs
-        while (true) {
-          pokemon.ivs.filter { it.key.type == PERMANENT }.forEach { pokemon.ivs[it.key] = acceptableRange.random() }
-          if (pokemon.ivs.filter { it.key.type == PERMANENT } != ivs.filter { it.key.type == PERMANENT }) {
-            pokemon.ivs.filter { it.key.type == PERMANENT }.forEach { player.sendMessage(Text.of("Pokémon's ${it.key.displayName.string} IV is now ${pokemon.ivs[it.key]}")) }
-            break
+        var count = 6
+        do {
+          val ivs: IVs = IVs.createRandomIVs()
+          pokemon.ivs.filter { it.key.type == PERMANENT }.forEach {
+            if (pokemon.ivs[it.key] != (ivs[it.key]!!)) count -= 1
+            pokemon.ivs[it.key] = (ivs[it.key]!!)
           }
-        }
+        } while (count == 6)
+        player.sendMessage(Text.of("Randomized Pokémon's IVs!"))
+        player.sendMessage(Text.of("======================================"))
+        pokemon.ivs.filter { it.key.type == PERMANENT }.forEach { player.sendMessage(Text.of("Pokémon's ${it.key.displayName.string} IV is now ${pokemon.ivs[it.key]}")) }
       } else {
         if (pokemon.ivs.none { it.value != iv.coerceIn(acceptableRange) }) {
           player.sendMessage(Text.of("Pokémon's IVs are each already $iv"))
