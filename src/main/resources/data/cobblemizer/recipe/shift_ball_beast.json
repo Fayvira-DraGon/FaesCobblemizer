@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "cobblemon:beast_ball"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "cobblemizer:shift_ball/tier_4/shift_ball_beast"
+  }
+}

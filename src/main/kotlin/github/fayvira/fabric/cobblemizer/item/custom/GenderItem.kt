@@ -15,7 +15,7 @@ import net.minecraft.sound.SoundEvent
 import net.minecraft.text.Text
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
-import net.minecraft.util.TypedActionResult.fail
+import net.minecraft.util.TypedActionResult.pass
 import net.minecraft.util.TypedActionResult.success
 import net.minecraft.world.World
 
@@ -43,13 +43,13 @@ class GenderItem(
       // player.sendMessage(Text.of("Swapped Pokémon's Gender Appearance!"))
       pokemon.entity?.playSound(failure, 1F, 1F)
       // pokemon.entity?.playSound(success, 1F, 1F)
-      fail(stack)
+      pass(stack)
       // success(stack)
     } else {
       if (pokemon.gender == Gender.GENDERLESS) {
         player.sendMessage(Text.of("Pokémon must not be ${pokemon.gender.name}!"))
         pokemon.entity?.playSound(failure, 1F, 1F)
-        fail(stack)
+        pass(stack)
       } else {
         pokemon.gender = if (pokemon.gender == Gender.MALE) Gender.FEMALE else Gender.MALE
         player.sendMessage(Text.of("Pokémon's Gender is now ${pokemon.gender.name}!"))
@@ -60,10 +60,7 @@ class GenderItem(
     }
   }
 
-  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
-    if (user is ServerPlayerEntity) {
-      return use(user, user.getStackInHand(hand))
-    }
-    return success(user.getStackInHand(hand))
-  }
+  override fun canUseOnPokemon(stack: ItemStack, pokemon: Pokemon): Boolean = pokemon.isPlayerOwned()
+
+  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> = if (user is ServerPlayerEntity) use(user, user.getStackInHand(hand)) else success(user.getStackInHand(hand))
 }

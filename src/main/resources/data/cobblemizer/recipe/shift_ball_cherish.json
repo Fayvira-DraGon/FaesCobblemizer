@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "cobblemon:cherish_ball"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "cobblemizer:shift_ball/tier_5/shift_ball_cherish"
+  }
+}

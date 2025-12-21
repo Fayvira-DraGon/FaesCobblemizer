@@ -53,6 +53,7 @@ import github.fayvira.fabric.cobblemizer.Cobblemizer.Companion.LOGGER
 import github.fayvira.fabric.cobblemizer.Cobblemizer.Companion.MOD_ID
 import github.fayvira.fabric.cobblemizer.Cobblemizer.Companion.MOD_NAME
 import github.fayvira.fabric.cobblemizer.item.custom.*
+import net.minecraft.item.Item
 import net.minecraft.item.Item.Settings
 import net.minecraft.item.ItemGroup.*
 import net.minecraft.item.ItemStack
@@ -65,6 +66,7 @@ import net.minecraft.util.Identifier
 object Items {
   // BottleCapItem
   // base bottle caps
+  val BOTTLE_CAP: Item = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap"), Item(Settings().maxCount(16)))
   val BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_black"), BottleCapItem(stat = ATTACK))
   val BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_blue"), BottleCapItem(stat = SPECIAL_ATTACK))
   val BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_gold"), BottleCapItem())
@@ -74,22 +76,16 @@ object Items {
   val BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_yellow"), BottleCapItem(stat = DEFENCE))
 
   // void bottle caps
+  val VOID_BOTTLE_CAP: Item = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap"), Item(Settings().maxCount(16)))
   val VOID_BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_black"), BottleCapItem(stat = ATTACK, iv = 0))
   val VOID_BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_blue"), BottleCapItem(stat = SPECIAL_ATTACK, iv = 0))
-  val VOID_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_gold"), BottleCapItem(iv = 0))
   val VOID_BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_green"), BottleCapItem(stat = SPECIAL_DEFENCE, iv = 0))
   val VOID_BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_pink"), BottleCapItem(stat = SPEED, iv = 0))
   val VOID_BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_red"), BottleCapItem(stat = HP, iv = 0))
   val VOID_BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_yellow"), BottleCapItem(stat = DEFENCE, iv = 0))
 
-  // wild bottle caps
-  val WILD_BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_black"), BottleCapItem(stat = ATTACK, iv = -1))
-  val WILD_BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_blue"), BottleCapItem(stat = SPECIAL_ATTACK, iv = -1))
-  val WILD_BOTTLE_CAP_GOLD: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_gold"), BottleCapItem(iv = -1))
-  val WILD_BOTTLE_CAP_GREEN: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_green"), BottleCapItem(stat = SPECIAL_DEFENCE, iv = -1))
-  val WILD_BOTTLE_CAP_PINK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_pink"), BottleCapItem(stat = SPEED, iv = -1))
-  val WILD_BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_red"), BottleCapItem(stat = HP, iv = -1))
-  val WILD_BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wild_bottle_cap_yellow"), BottleCapItem(stat = DEFENCE, iv = -1))
+  // wood bottle cap
+  val WOOD_BOTTLE_CAP: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wood_bottle_cap"), BottleCapItem(iv = -1))
 
   // FriendshipCubeItem
   val FRIENDSHIP_CORRUPTED_CUBE: FriendshipCubeItem = register(ITEM, Identifier.of(MOD_ID, "friendship_cube/friendship_corrupted_cube"), FriendshipCubeItem(friendship = 1))
@@ -166,7 +162,7 @@ object Items {
   val SHIFT_BALL_MASTER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_master"), ShiftBallItem(selectedBall = MASTER_BALL))
 
   // ShinyItem
-  val SHINY_CAPSULE: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_capsule"), ShinyItem(capsule = true, settings = Settings().maxCount(1)))
+  val SHINY_CAPSULE: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_capsule"), ShinyItem(capsule = true))
   val SHINY_CRYSTAL: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_crystal"), ShinyItem())
   val SHINY_FLUID: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_fluid"), ShinyItem(capsule = null))
 
@@ -184,31 +180,26 @@ object Items {
         .entries { _: DisplayContext, entries: Entries ->
           // BottleCapItem
           // bottle caps
+          entries.add(BOTTLE_CAP)
+          entries.add(BOTTLE_CAP_GOLD)
           entries.add(BOTTLE_CAP_BLACK)
           entries.add(BOTTLE_CAP_BLUE)
-          entries.add(BOTTLE_CAP_GOLD)
           entries.add(BOTTLE_CAP_GREEN)
           entries.add(BOTTLE_CAP_PINK)
           entries.add(BOTTLE_CAP_RED)
           entries.add(BOTTLE_CAP_YELLOW)
 
+          // wood bottle cap
+          entries.add(WOOD_BOTTLE_CAP)
+
           // void bottle caps
+          entries.add(VOID_BOTTLE_CAP)
           entries.add(VOID_BOTTLE_CAP_BLACK)
           entries.add(VOID_BOTTLE_CAP_BLUE)
-          entries.add(VOID_BOTTLE_CAP_GOLD)
           entries.add(VOID_BOTTLE_CAP_GREEN)
           entries.add(VOID_BOTTLE_CAP_PINK)
           entries.add(VOID_BOTTLE_CAP_RED)
           entries.add(VOID_BOTTLE_CAP_YELLOW)
-
-          // wild bottle caps
-          entries.add(WILD_BOTTLE_CAP_BLACK)
-          entries.add(WILD_BOTTLE_CAP_BLUE)
-          entries.add(WILD_BOTTLE_CAP_GOLD)
-          entries.add(WILD_BOTTLE_CAP_GREEN)
-          entries.add(WILD_BOTTLE_CAP_PINK)
-          entries.add(WILD_BOTTLE_CAP_RED)
-          entries.add(WILD_BOTTLE_CAP_YELLOW)
 
           // FriendshipCubeItem
           entries.add(FRIENDSHIP_CORRUPTED_CUBE)

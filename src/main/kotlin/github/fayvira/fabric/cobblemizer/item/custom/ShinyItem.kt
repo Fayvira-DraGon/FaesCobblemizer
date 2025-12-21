@@ -8,16 +8,19 @@ import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.Species
 import github.fayvira.fabric.cobblemizer.component.DataComponents.SPECIES_COMPONENT
+import github.fayvira.fabric.cobblemizer.item.Items.SHINY_CAPSULE
+import net.minecraft.component.ComponentChanges.builder
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
+import net.minecraft.item.ItemUsage.exchangeStack
 import net.minecraft.item.tooltip.TooltipType
+import net.minecraft.registry.entry.RegistryEntry.of
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundEvent
 import net.minecraft.text.Text
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
-import net.minecraft.util.TypedActionResult.fail
-import net.minecraft.util.TypedActionResult.success
+import net.minecraft.util.TypedActionResult.*
 import net.minecraft.world.World
 
 class ShinyItem(
@@ -48,28 +51,39 @@ class ShinyItem(
       // player.sendMessage(Text.of("Swapped Pokémon's Shiny Appearance!"))
       pokemon.entity?.playSound(failure, 1F, 1F)
       // pokemon.entity?.playSound(success, 1F, 1F)
-      fail(stack)
+      pass(stack)
       // success(stack)
     } else if (capsule) {
       val species: Species? = stack.getOrDefault(SPECIES_COMPONENT, null)
       if (species == null) {
         if (shiny) {
           pokemon.shiny = false
-          stack.set(SPECIES_COMPONENT, pokemon.species)
+          exchangeStack(
+            stack,
+            player,
+            ItemStack(
+              of(SHINY_CAPSULE),
+              1,
+              builder().add(
+                SPECIES_COMPONENT,
+                pokemon.species)
+                .build()
+            )
+          )
           player.sendMessage(Text.of("Captured Pokémon's Shiny Status!"))
           pokemon.entity?.playSound(success, 1F, 1F)
           success(stack)
         } else {
           player.sendMessage(Text.of("Pokémon has no Shiny Status to capture"))
           pokemon.entity?.playSound(failure, 1F, 1F)
-          fail(stack)
+          pass(stack)
         }
       } else {
         val line: Boolean = getFirst(pokemon.species) == species
         if (shiny) {
           player.sendMessage(Text.of("Pokémon is already Shiny"))
           pokemon.entity?.playSound(failure, 1F, 1F)
-          fail(stack)
+          pass(stack)
         } else {
           if (line) {
             pokemon.shiny = true
@@ -81,7 +95,7 @@ class ShinyItem(
           } else {
             player.sendMessage(Text.of("Pokémon must be in the ${species.name} Family"))
             pokemon.entity?.playSound(failure, 1F, 1F)
-            fail(stack)
+            pass(stack)
           }
         }
       }
@@ -103,10 +117,7 @@ class ShinyItem(
     return first
   }
 
-  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
-    if (user is ServerPlayerEntity) {
-      return use(user, user.getStackInHand(hand))
-    }
-    return success(user.getStackInHand(hand))
-  }
+  override fun canUseOnPokemon(stack: ItemStack, pokemon: Pokemon): Boolean = pokemon.isPlayerOwned()
+
+  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> = if (user is ServerPlayerEntity) use(user, user.getStackInHand(hand)) else success(user.getStackInHand(hand))
 }

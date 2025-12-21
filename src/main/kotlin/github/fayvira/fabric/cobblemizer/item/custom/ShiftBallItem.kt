@@ -15,7 +15,7 @@ import net.minecraft.sound.SoundEvent
 import net.minecraft.text.Text
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
-import net.minecraft.util.TypedActionResult.fail
+import net.minecraft.util.TypedActionResult.pass
 import net.minecraft.util.TypedActionResult.success
 import net.minecraft.world.World
 
@@ -41,7 +41,7 @@ class ShiftBallItem(
     return if (selectedBall == pokemon.caughtBall) {
       player.sendMessage(Text.of("Pokémon is already in the $selectedBall"))
       pokemon.entity?.playSound(failure, 1F, 1F)
-      fail(stack)
+      pass(stack)
     } else {
       pokemon.caughtBall = selectedBall
       player.sendMessage(Text.of("Pokémon is now in the $selectedBall"))
@@ -51,10 +51,7 @@ class ShiftBallItem(
     }
   }
 
-  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
-    if (user is ServerPlayerEntity) {
-      return use(user, user.getStackInHand(hand))
-    }
-    return success(user.getStackInHand(hand))
-  }
+  override fun canUseOnPokemon(stack: ItemStack, pokemon: Pokemon): Boolean = pokemon.isPlayerOwned()
+
+  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> = if (user is ServerPlayerEntity) use(user, user.getStackInHand(hand)) else success(user.getStackInHand(hand))
 }

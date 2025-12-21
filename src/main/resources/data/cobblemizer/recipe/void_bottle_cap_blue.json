@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "cobblemizer:bottle_cap/void_bottle_cap"
+    },
+    {
+      "item": "cobblemon:blue_apricorn"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "cobblemizer:bottle_cap/void_bottle_cap_blue"
+  }
+}

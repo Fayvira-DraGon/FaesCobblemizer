@@ -1,6 +1,7 @@
 {
   // BottleCapItem
   // base
+  "item.cobblemizer.bottle_cap.bottle_cap": "Bottle Cap",
   "item.cobblemizer.bottle_cap.bottle_cap_black": "Black Bottle Cap",
   "item.cobblemizer.bottle_cap.bottle_cap_blue": "Blue Bottle Cap",
   "item.cobblemizer.bottle_cap.bottle_cap_gold": "Gold Bottle Cap",
@@ -10,22 +11,16 @@
   "item.cobblemizer.bottle_cap.bottle_cap_yellow": "Yellow Bottle Cap",
 
   // void
+  "item.cobblemizer.bottle_cap.void_bottle_cap": "Void Bottle Cap",
   "item.cobblemizer.bottle_cap.void_bottle_cap_black": "Black Void Bottle Cap",
   "item.cobblemizer.bottle_cap.void_bottle_cap_blue": "Blue Void Bottle Cap",
-  "item.cobblemizer.bottle_cap.void_bottle_cap_gold": "Gold Void Bottle Cap",
   "item.cobblemizer.bottle_cap.void_bottle_cap_green": "Green Void Bottle Cap",
   "item.cobblemizer.bottle_cap.void_bottle_cap_pink": "Pink Void Bottle Cap",
   "item.cobblemizer.bottle_cap.void_bottle_cap_red": "Red Void Bottle Cap",
   "item.cobblemizer.bottle_cap.void_bottle_cap_yellow": "Yellow Void Bottle Cap",
 
-  // wild
-  "item.cobblemizer.bottle_cap.wild_bottle_cap_black": "Black Wild Bottle Cap",
-  "item.cobblemizer.bottle_cap.wild_bottle_cap_blue": "Blue Wild Bottle Cap",
-  "item.cobblemizer.bottle_cap.wild_bottle_cap_gold": "Gold Wild Bottle Cap",
-  "item.cobblemizer.bottle_cap.wild_bottle_cap_green": "Green Wild Bottle Cap",
-  "item.cobblemizer.bottle_cap.wild_bottle_cap_pink": "Pink Wild Bottle Cap",
-  "item.cobblemizer.bottle_cap.wild_bottle_cap_red": "Red Wild Bottle Cap",
-  "item.cobblemizer.bottle_cap.wild_bottle_cap_yellow": "Yellow Wild Bottle Cap",
+  // wood
+  "item.cobblemizer.bottle_cap.wood_bottle_cap": "Wooden Bottle Cap",
 
   // GenderItem
   "item.cobblemizer.friendship_cube.friendship_corrupted_cube": "Corrupted Friendship Cube",

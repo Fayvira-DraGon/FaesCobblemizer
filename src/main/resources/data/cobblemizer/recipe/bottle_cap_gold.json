@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "b": {
+      "item": "cobblemizer:bottle_cap/bottle_cap"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "gbg",
+    "b#b",
+    "gbg"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cobblemizer:bottle_cap/bottle_cap_gold"
+  }
+}

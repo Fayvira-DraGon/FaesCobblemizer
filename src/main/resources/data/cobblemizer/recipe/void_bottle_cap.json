@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:ender_eye"
+    },
+    "o": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    "ooo",
+    "o#o",
+    "ooo"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cobblemizer:bottle_cap/void_bottle_cap"
+  }
+}

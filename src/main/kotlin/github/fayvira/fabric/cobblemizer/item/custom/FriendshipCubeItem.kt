@@ -7,8 +7,8 @@ import com.cobblemon.mod.common.api.item.PokemonSelectingItem
 import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.pokemon.Pokemon
-import github.fayvira.fabric.cobblemizer.Cobblemizer.Companion.maxFriendship
 import github.fayvira.fabric.cobblemizer.Cobblemizer.Companion.LOGGER
+import github.fayvira.fabric.cobblemizer.Cobblemizer.Companion.maxFriendship
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.item.tooltip.TooltipType
@@ -17,7 +17,7 @@ import net.minecraft.sound.SoundEvent
 import net.minecraft.text.Text
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
-import net.minecraft.util.TypedActionResult.fail
+import net.minecraft.util.TypedActionResult.pass
 import net.minecraft.util.TypedActionResult.success
 import net.minecraft.world.World
 
@@ -59,7 +59,7 @@ class FriendshipCubeItem(
     return if (newFriendship == pokemon.friendship) {
       player.sendMessage(Text.of("Pokémon's Friendeship is already $newFriendship"))
       pokemon.entity?.playSound(failure, 1F, 1F)
-      fail(stack)
+      pass(stack)
     } else {
       pokemon.setFriendship(newFriendship)
       player.sendMessage(Text.of("Pokémon's Friendeship is now $newFriendship"))
@@ -69,10 +69,7 @@ class FriendshipCubeItem(
     }
   }
 
-  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
-    if (user is ServerPlayerEntity) {
-      return use(user, user.getStackInHand(hand))
-    }
-    return success(user.getStackInHand(hand))
-  }
+  override fun canUseOnPokemon(stack: ItemStack, pokemon: Pokemon): Boolean = pokemon.isPlayerOwned()
+
+  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> = if (user is ServerPlayerEntity) use(user, user.getStackInHand(hand)) else success(user.getStackInHand(hand))
 }

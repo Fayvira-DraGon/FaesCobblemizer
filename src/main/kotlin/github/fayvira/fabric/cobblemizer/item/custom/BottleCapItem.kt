@@ -18,7 +18,7 @@ import net.minecraft.sound.SoundEvent
 import net.minecraft.text.Text
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
-import net.minecraft.util.TypedActionResult.fail
+import net.minecraft.util.TypedActionResult.pass
 import net.minecraft.util.TypedActionResult.success
 import net.minecraft.world.World
 
@@ -34,7 +34,7 @@ class BottleCapItem(
   val acceptableRange = 0.. MAX_VALUE
 
   override fun appendTooltip(stack: ItemStack, context: TooltipContext, tooltip: MutableList<Text>, type: TooltipType) {
-    tooltip.add(Text.of((if (iv < 0) "Randomize " else "Set ") + (if (stat == null) "All of Pokémon's IVs" else "Pokémon's ${stat.displayName.string} IV") + (if (iv < 0) "" else " to ${iv.coerceIn(acceptableRange)}")))
+    tooltip.add(Text.of(if (iv < 0) "Randomize all of Pokémon's IVs" else (if (stat == null) "Set all of Pokémon's IVs to ${iv.coerceIn(acceptableRange)}" else "Set Pokémon's ${stat.displayName.string} IV to ${iv.coerceIn(acceptableRange)}")))
     super.appendTooltip(stack, context, tooltip, type)
   }
 
@@ -60,7 +60,7 @@ class BottleCapItem(
         if (pokemon.ivs.none { it.value != iv.coerceIn(acceptableRange) }) {
           player.sendMessage(Text.of("Pokémon's IVs are each already $iv"))
           pokemon.entity?.playSound(failure, 1F, 1F)
-          return fail(stack)
+          return pass(stack)
         }
         pokemon.ivs.filter { it.key.type == PERMANENT && it.value != iv.coerceIn(acceptableRange) }.forEach { pokemon.ivs[it.key] = iv.coerceIn(acceptableRange) }
         player.sendMessage(Text.of("Pokémon's IVs are each now $iv"))
@@ -73,7 +73,7 @@ class BottleCapItem(
       if (newIV == pokemon.ivs[stat]) {
         player.sendMessage(Text.of("Pokémon's ${stat.displayName.string} IV is already $iv"))
         pokemon.entity?.playSound(failure, 1F, 1F)
-        return fail(stack)
+        return pass(stack)
       } else {
         pokemon.ivs[stat] = newIV
         player.sendMessage(Text.of("Pokémon's ${stat.displayName.string} IV is now $newIV"))
@@ -84,10 +84,7 @@ class BottleCapItem(
     return success(stack)
   }
 
-  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
-    if (user is ServerPlayerEntity) {
-      return use(user, user.getStackInHand(hand))
-    }
-    return success(user.getStackInHand(hand))
-  }
+  override fun canUseOnPokemon(stack: ItemStack, pokemon: Pokemon): Boolean = pokemon.isPlayerOwned()
+
+  override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> = if (user is ServerPlayerEntity) use(user, user.getStackInHand(hand)) else success(user.getStackInHand(hand))
 }

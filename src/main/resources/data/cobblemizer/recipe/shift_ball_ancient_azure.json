@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "cobblemon:ancient_azure_ball"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "cobblemizer:shift_ball/tier_1/shift_ball_ancient_azure"
+  }
+}
