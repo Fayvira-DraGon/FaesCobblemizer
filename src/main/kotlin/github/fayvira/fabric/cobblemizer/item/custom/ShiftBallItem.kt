@@ -38,17 +38,20 @@ class ShiftBallItem(
     stack: ItemStack,
     pokemon: Pokemon
   ): TypedActionResult<ItemStack> {
-    return if (selectedBall == pokemon.caughtBall) {
-      player.sendMessage(Text.of("Pokémon is already in the $selectedBall"))
-      pokemon.entity?.playSound(failure, 1F, 1F)
-      pass(stack)
-    } else {
-      pokemon.caughtBall = selectedBall
-      player.sendMessage(Text.of("Pokémon is now in the $selectedBall"))
-      pokemon.entity?.playSound(success, 1F, 1F)
-      stack.decrementUnlessCreative(1, player)
-      success(stack)
+    if (!player.world.isClient) {
+      if (selectedBall == pokemon.caughtBall) {
+        player.sendMessage(Text.of("Pokémon is already in the ${selectedBall.item().name.string}"))
+        pokemon.entity?.playSound(failure, 1F, 1F)
+        return pass(stack)
+      } else {
+        pokemon.caughtBall = selectedBall
+        player.sendMessage(Text.of("Pokémon is now in the ${selectedBall.item().name.string}"))
+        pokemon.entity?.playSound(success, 1F, 1F)
+        stack.decrementUnlessCreative(1, player)
+        return success(stack)
+      }
     }
+    return pass(stack)
   }
 
   override fun canUseOnPokemon(stack: ItemStack, pokemon: Pokemon): Boolean = pokemon.isPlayerOwned()

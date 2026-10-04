@@ -64,8 +64,7 @@ import net.minecraft.text.Text.translatable
 import net.minecraft.util.Identifier
 
 object Items {
-  // BottleCapItem
-  // base bottle caps
+  // bottle cap items
   val BOTTLE_CAP: Item = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap"), Item(Settings().maxCount(16)))
   val BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_black"), BottleCapItem(stat = ATTACK))
   val BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_blue"), BottleCapItem(stat = SPECIAL_ATTACK))
@@ -75,7 +74,7 @@ object Items {
   val BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_red"), BottleCapItem(stat = HP))
   val BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/bottle_cap_yellow"), BottleCapItem(stat = DEFENCE))
 
-  // void bottle caps
+  // void bottle cap items
   val VOID_BOTTLE_CAP: Item = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap"), Item(Settings().maxCount(16)))
   val VOID_BOTTLE_CAP_BLACK: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_black"), BottleCapItem(stat = ATTACK, iv = 0))
   val VOID_BOTTLE_CAP_BLUE: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_blue"), BottleCapItem(stat = SPECIAL_ATTACK, iv = 0))
@@ -84,24 +83,24 @@ object Items {
   val VOID_BOTTLE_CAP_RED: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_red"), BottleCapItem(stat = HP, iv = 0))
   val VOID_BOTTLE_CAP_YELLOW: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/void_bottle_cap_yellow"), BottleCapItem(stat = DEFENCE, iv = 0))
 
-  // wood bottle cap
+  // wood bottle cap item
   val WOOD_BOTTLE_CAP: BottleCapItem = register(ITEM, Identifier.of(MOD_ID, "bottle_cap/wood_bottle_cap"), BottleCapItem(iv = -1))
 
-  // FriendshipCubeItem
+  // friendship cube items
   val FRIENDSHIP_CORRUPTED_CUBE: FriendshipCubeItem = register(ITEM, Identifier.of(MOD_ID, "friendship_cube/friendship_corrupted_cube"), FriendshipCubeItem(friendship = 1))
   val FRIENDSHIP_PERFECT_CUBE: FriendshipCubeItem = register(ITEM, Identifier.of(MOD_ID, "friendship_cube/friendship_perfect_cube"), FriendshipCubeItem())
   val FRIENDSHIP_UNIDENTIFIED_CUBE: FriendshipCubeItem = register(ITEM, Identifier.of(MOD_ID, "friendship_cube/friendship_unidentified_cube"), FriendshipCubeItem(friendship = 0))
 
-  // GenderItem
-  val GENDER_CRYSTAL: GenderItem = register(ITEM, Identifier.of(MOD_ID, "gender/gender_crystal"), GenderItem())
-  val GENDER_FLUID: GenderItem = register(ITEM, Identifier.of(MOD_ID, "gender/gender_fluid"), GenderItem(fluid = true))
+  // gender items
+  val GENDER_CRYSTAL: GenderCrystalItem = register(ITEM, Identifier.of(MOD_ID, "gender/gender_crystal"), GenderCrystalItem())
+  val GENDER_FLUID: GenderFluidItem = register(ITEM, Identifier.of(MOD_ID, "gender/gender_fluid"), GenderFluidItem())
 
-  // LevelCandyItem
+  // level candy items
   val LEVEL_CANDY_CHAOS: LevelCandyItem = register(ITEM, Identifier.of(MOD_ID, "level_candy/level_candy_chaos"), LevelCandyItem(level = 0))
   val LEVEL_CANDY_SPOILED: LevelCandyItem = register(ITEM, Identifier.of(MOD_ID, "level_candy/level_candy_spoiled"), LevelCandyItem(level = 1))
   val LEVEL_CANDY_ULTIMATE: LevelCandyItem = register(ITEM, Identifier.of(MOD_ID, "level_candy/level_candy_ultimate"), LevelCandyItem())
 
-  // ShiftBallItem
+  // shift ball items
   // tier 1 balls
   val SHIFT_BALL_ANCIENT_AZURE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_azure"), ShiftBallItem(selectedBall = ANCIENT_AZURE_BALL))
   val SHIFT_BALL_ANCIENT_CITRINE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_1/shift_ball_ancient_citrine"), ShiftBallItem(selectedBall = ANCIENT_CITRINE_BALL))
@@ -127,6 +126,7 @@ object Items {
   val SHIFT_BALL_ANCIENT_GREAT: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_ancient_great"), ShiftBallItem(selectedBall = ANCIENT_GREAT_BALL))
   val SHIFT_BALL_ANCIENT_LEADEN: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_ancient_leaden"), ShiftBallItem(selectedBall = ANCIENT_LEADEN_BALL))
   val SHIFT_BALL_ANCIENT_WING: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_ancient_wing"), ShiftBallItem(selectedBall = ANCIENT_WING_BALL))
+
   val SHIFT_BALL_DIVE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_dive"), ShiftBallItem(selectedBall = DIVE_BALL))
   val SHIFT_BALL_FAST: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_fast"), ShiftBallItem(selectedBall = FAST_BALL))
   val SHIFT_BALL_FRIEND: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_2/shift_ball_friend"), ShiftBallItem(selectedBall = FRIEND_BALL))
@@ -144,6 +144,7 @@ object Items {
   val SHIFT_BALL_ANCIENT_GIGATON: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ancient_gigaton"), ShiftBallItem(selectedBall = ANCIENT_GIGATON_BALL))
   val SHIFT_BALL_ANCIENT_JET: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ancient_jet"), ShiftBallItem(selectedBall = ANCIENT_JET_BALL))
   val SHIFT_BALL_ANCIENT_ULTRA: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_ancient_ultra"), ShiftBallItem(selectedBall = ANCIENT_ULTRA_BALL))
+
   val SHIFT_BALL_DUSK: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_dusk"), ShiftBallItem(selectedBall = DUSK_BALL))
   val SHIFT_BALL_LOVE: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_love"), ShiftBallItem(selectedBall = LOVE_BALL))
   val SHIFT_BALL_LUXURY: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_3/shift_ball_luxury"), ShiftBallItem(selectedBall = LUXURY_BALL))
@@ -158,17 +159,18 @@ object Items {
 
   // tier 5 balls
   val SHIFT_BALL_ANCIENT_ORIGIN: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_ancient_origin"), ShiftBallItem(selectedBall = ANCIENT_ORIGIN_BALL))
+
   val SHIFT_BALL_CHERISH: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_cherish"), ShiftBallItem(selectedBall = CHERISH_BALL))
   val SHIFT_BALL_MASTER: ShiftBallItem = register(ITEM, Identifier.of(MOD_ID, "shift_ball/tier_5/shift_ball_master"), ShiftBallItem(selectedBall = MASTER_BALL))
 
-  // ShinyItem
-  val SHINY_CAPSULE: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_capsule"), ShinyItem(capsule = true))
-  val SHINY_CRYSTAL: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_crystal"), ShinyItem())
-  val SHINY_FLUID: ShinyItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_fluid"), ShinyItem(capsule = null))
+  // shiny items
+  val SHINY_CAPSULE: ShinyCapsuleItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_capsule"), ShinyCapsuleItem())
+  val SHINY_CRYSTAL: ShinyCrystalItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_crystal"), ShinyCrystalItem())
+  val SHINY_FLUID: ShinyFluidItem = register(ITEM, Identifier.of(MOD_ID, "shiny/shiny_fluid"), ShinyFluidItem())
 
   // register all mod items function
   fun init() {
-    LOGGER.info("Register Mod Items for $MOD_NAME")
+    LOGGER.info("Initialize Mod Items for $MOD_NAME")
 
     // register item group
     register(
@@ -178,8 +180,8 @@ object Items {
         .displayName(translatable("itemgroup.cobblemizer"))
         .icon { ItemStack(GENDER_FLUID) }
         .entries { _: DisplayContext, entries: Entries ->
-          // BottleCapItem
-          // bottle caps
+
+          // bottle cap items
           entries.add(BOTTLE_CAP)
           entries.add(BOTTLE_CAP_GOLD)
           entries.add(BOTTLE_CAP_BLACK)
@@ -189,10 +191,10 @@ object Items {
           entries.add(BOTTLE_CAP_RED)
           entries.add(BOTTLE_CAP_YELLOW)
 
-          // wood bottle cap
+          // wood bottle cap item
           entries.add(WOOD_BOTTLE_CAP)
 
-          // void bottle caps
+          // void bottle cap items
           entries.add(VOID_BOTTLE_CAP)
           entries.add(VOID_BOTTLE_CAP_BLACK)
           entries.add(VOID_BOTTLE_CAP_BLUE)
@@ -201,22 +203,21 @@ object Items {
           entries.add(VOID_BOTTLE_CAP_RED)
           entries.add(VOID_BOTTLE_CAP_YELLOW)
 
-          // FriendshipCubeItem
+          // friendship cube items
           entries.add(FRIENDSHIP_CORRUPTED_CUBE)
           entries.add(FRIENDSHIP_PERFECT_CUBE)
           entries.add(FRIENDSHIP_UNIDENTIFIED_CUBE)
 
-          // GenderItem
+          // gender items
           entries.add(GENDER_CRYSTAL)
           entries.add(GENDER_FLUID)
-
-          // LevelCandyItem
+          // level candy items
           entries.add(LEVEL_CANDY_CHAOS)
           entries.add(LEVEL_CANDY_SPOILED)
           entries.add(LEVEL_CANDY_ULTIMATE)
 
-          // ShiftBallItem
-          // tier 1 balls
+          // shift ball items
+          // tier 1
           entries.add(SHIFT_BALL_ANCIENT_AZURE)
           entries.add(SHIFT_BALL_ANCIENT_CITRINE)
           entries.add(SHIFT_BALL_ANCIENT_FEATHER)
@@ -236,7 +237,7 @@ object Items {
           entries.add(SHIFT_BALL_SLATE)
           entries.add(SHIFT_BALL_VERDANT)
 
-          // tier 2 balls
+          // tier 2
           entries.add(SHIFT_BALL_ANCIENT_GREAT)
           entries.add(SHIFT_BALL_ANCIENT_LEADEN)
           entries.add(SHIFT_BALL_ANCIENT_WING)
@@ -253,7 +254,7 @@ object Items {
           entries.add(SHIFT_BALL_PARK)
           entries.add(SHIFT_BALL_SPORT)
 
-          // tier 3 balls
+          // tier 3
           entries.add(SHIFT_BALL_ANCIENT_GIGATON)
           entries.add(SHIFT_BALL_ANCIENT_JET)
           entries.add(SHIFT_BALL_ANCIENT_ULTRA)
@@ -265,16 +266,16 @@ object Items {
           entries.add(SHIFT_BALL_TIMER)
           entries.add(SHIFT_BALL_ULTRA)
 
-          // tier 4 balls
+          // tier 4
           entries.add(SHIFT_BALL_BEAST)
           entries.add(SHIFT_BALL_DREAM)
 
-          // tier 5 balls
+          // tier 5
           entries.add(SHIFT_BALL_ANCIENT_ORIGIN)
           entries.add(SHIFT_BALL_CHERISH)
           entries.add(SHIFT_BALL_MASTER)
 
-          // ShinyItem
+          // shiny items
           entries.add(SHINY_CAPSULE)
           entries.add(SHINY_CRYSTAL)
           entries.add(SHINY_FLUID)

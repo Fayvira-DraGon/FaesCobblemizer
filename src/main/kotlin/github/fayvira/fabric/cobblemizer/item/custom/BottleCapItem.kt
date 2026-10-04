@@ -43,45 +43,50 @@ class BottleCapItem(
     stack: ItemStack,
     pokemon: Pokemon
   ): TypedActionResult<ItemStack> {
-    if (stat == null) {
-      if (iv < 0) {
-        var count = 6
-        do {
-          val ivs: IVs = IVs.createRandomIVs()
-          pokemon.ivs.filter { it.key.type == PERMANENT }.forEach {
-            if (pokemon.ivs[it.key] != (ivs[it.key]!!)) count -= 1
-            pokemon.ivs[it.key] = (ivs[it.key]!!)
+    if (!player.world.isClient) {
+      if (stat == null) {
+        if (iv < 0) {
+          var count = 6
+          do {
+            val ivs: IVs = IVs.createRandomIVs()
+            pokemon.ivs.filter { it.key.type == PERMANENT }.forEach {
+              if (pokemon.ivs[it.key] != (ivs[it.key]!!)) count -= 1
+              pokemon.ivs[it.key] = (ivs[it.key]!!)
+            }
+          } while (count == 6)
+
+          player.sendMessage(Text.of("Randomized Pokémon's IVs!"))
+          player.sendMessage(Text.of("======================================"))
+          pokemon.ivs.filter { it.key.type == PERMANENT }.forEach { player.sendMessage(Text.of("Pokémon's ${it.key.displayName.string} IV is now ${pokemon.ivs[it.key]}")) }
+        } else {
+          if (pokemon.ivs.none { it.value != iv.coerceIn(acceptableRange) }) {
+            player.sendMessage(Text.of("Pokémon's IVs are each already $iv"))
+            pokemon.entity?.playSound(failure, 1F, 1F)
+            return pass(stack)
           }
-        } while (count == 6)
-        player.sendMessage(Text.of("Randomized Pokémon's IVs!"))
-        player.sendMessage(Text.of("======================================"))
-        pokemon.ivs.filter { it.key.type == PERMANENT }.forEach { player.sendMessage(Text.of("Pokémon's ${it.key.displayName.string} IV is now ${pokemon.ivs[it.key]}")) }
+          pokemon.ivs.filter { it.key.type == PERMANENT && it.value != iv.coerceIn(acceptableRange) }.forEach { pokemon.ivs[it.key] = iv.coerceIn(acceptableRange) }
+          player.sendMessage(Text.of("Pokémon's IVs are each now $iv"))
+        }
       } else {
-        if (pokemon.ivs.none { it.value != iv.coerceIn(acceptableRange) }) {
-          player.sendMessage(Text.of("Pokémon's IVs are each already $iv"))
+        val newIV = if (iv < 0) {
+          val random: Int = acceptableRange.minus(acceptableRange.last).random()
+          if (random == pokemon.ivs[stat]) random + 1 else random
+        } else iv.coerceIn(acceptableRange)
+
+        if (newIV == pokemon.ivs[stat]) {
+          player.sendMessage(Text.of("Pokémon's ${stat.displayName.string} IV is already $iv"))
           pokemon.entity?.playSound(failure, 1F, 1F)
           return pass(stack)
+        } else {
+          pokemon.ivs[stat] = newIV
+          player.sendMessage(Text.of("Pokémon's ${stat.displayName.string} IV is now $newIV"))
         }
-        pokemon.ivs.filter { it.key.type == PERMANENT && it.value != iv.coerceIn(acceptableRange) }.forEach { pokemon.ivs[it.key] = iv.coerceIn(acceptableRange) }
-        player.sendMessage(Text.of("Pokémon's IVs are each now $iv"))
       }
-    } else {
-      val newIV = if (iv < 0) {
-        val random: Int = acceptableRange.minus(acceptableRange.last).random()
-        if (random == pokemon.ivs[stat]) random + 1 else random
-      } else iv.coerceIn(acceptableRange)
-      if (newIV == pokemon.ivs[stat]) {
-        player.sendMessage(Text.of("Pokémon's ${stat.displayName.string} IV is already $iv"))
-        pokemon.entity?.playSound(failure, 1F, 1F)
-        return pass(stack)
-      } else {
-        pokemon.ivs[stat] = newIV
-        player.sendMessage(Text.of("Pokémon's ${stat.displayName.string} IV is now $newIV"))
-      }
+      pokemon.entity?.playSound(success, 1F, 1F)
+      stack.decrementUnlessCreative(1, player)
+      return success(stack)
     }
-    pokemon.entity?.playSound(success, 1F, 1F)
-    stack.decrementUnlessCreative(1, player)
-    return success(stack)
+    return pass(stack)
   }
 
   override fun canUseOnPokemon(stack: ItemStack, pokemon: Pokemon): Boolean = pokemon.isPlayerOwned()

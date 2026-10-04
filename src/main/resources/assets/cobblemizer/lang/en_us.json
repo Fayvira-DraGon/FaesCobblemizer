@@ -1,6 +1,5 @@
 {
-  // BottleCapItem
-  // base
+  // bottle cap items
   "item.cobblemizer.bottle_cap.bottle_cap": "Bottle Cap",
   "item.cobblemizer.bottle_cap.bottle_cap_black": "Black Bottle Cap",
   "item.cobblemizer.bottle_cap.bottle_cap_blue": "Blue Bottle Cap",
@@ -10,7 +9,7 @@
   "item.cobblemizer.bottle_cap.bottle_cap_red": "Red Bottle Cap",
   "item.cobblemizer.bottle_cap.bottle_cap_yellow": "Yellow Bottle Cap",
 
-  // void
+  // void bottle cap items
   "item.cobblemizer.bottle_cap.void_bottle_cap": "Void Bottle Cap",
   "item.cobblemizer.bottle_cap.void_bottle_cap_black": "Black Void Bottle Cap",
   "item.cobblemizer.bottle_cap.void_bottle_cap_blue": "Blue Void Bottle Cap",
@@ -19,10 +18,10 @@
   "item.cobblemizer.bottle_cap.void_bottle_cap_red": "Red Void Bottle Cap",
   "item.cobblemizer.bottle_cap.void_bottle_cap_yellow": "Yellow Void Bottle Cap",
 
-  // wood
+  // wood bottle cap items
   "item.cobblemizer.bottle_cap.wood_bottle_cap": "Wooden Bottle Cap",
 
-  // GenderItem
+  // gender items
   "item.cobblemizer.friendship_cube.friendship_corrupted_cube": "Corrupted Friendship Cube",
   "item.cobblemizer.friendship_cube.friendship_perfect_cube": "Perfect Friendship Cube",
   "item.cobblemizer.friendship_cube.friendship_unidentified_cube": "Unidentified Friendship Cube",
@@ -30,12 +29,12 @@
   "item.cobblemizer.gender.gender_crystal": "Gender Crystal",
   "item.cobblemizer.gender.gender_fluid": "Gender Fluid",
 
-  // LevelCandyItem
+  // level candy item
   "item.cobblemizer.level_candy.level_candy_chaos": "Chaos Candy",
   "item.cobblemizer.level_candy.level_candy_spoiled": "Spoiled Candy",
   "item.cobblemizer.level_candy.level_candy_ultimate": "Ultimate Candy",
 
-  // ShiftBallItem
+  // shift ball items
   // tier 1 balls
   "item.cobblemizer.shift_ball.tier_1.shift_ball_ancient_azure": "Ancient Azure Shift Ball",
   "item.cobblemizer.shift_ball.tier_1.shift_ball_ancient_citrine": "Ancient Citrine Shift Ball",
@@ -46,6 +45,7 @@
   "item.cobblemizer.shift_ball.tier_1.shift_ball_ancient_roseate": "Ancient Roseate Shift Ball",
   "item.cobblemizer.shift_ball.tier_1.shift_ball_ancient_slate": "Ancient Slate Shift Ball",
   "item.cobblemizer.shift_ball.tier_1.shift_ball_ancient_verdant": "Ancient Verdant Shift Ball",
+
   "item.cobblemizer.shift_ball.tier_1.shift_ball_azure": "Azure Shift Ball",
   "item.cobblemizer.shift_ball.tier_1.shift_ball_citrine": "Citrine Shift Ball",
   "item.cobblemizer.shift_ball.tier_1.shift_ball_heal": "Heal Shift Ball",
@@ -60,6 +60,7 @@
   "item.cobblemizer.shift_ball.tier_2.shift_ball_ancient_great": "Ancient Great Shift Ball",
   "item.cobblemizer.shift_ball.tier_2.shift_ball_ancient_leaden": "Ancient Leaden Shift Ball",
   "item.cobblemizer.shift_ball.tier_2.shift_ball_ancient_wing": "Ancient Wing Shift Ball",
+
   "item.cobblemizer.shift_ball.tier_2.shift_ball_dive": "Dive Shift Ball",
   "item.cobblemizer.shift_ball.tier_2.shift_ball_fast": "Fast Shift Ball",
   "item.cobblemizer.shift_ball.tier_2.shift_ball_friend": "Friend Shift Ball",
@@ -77,6 +78,7 @@
   "item.cobblemizer.shift_ball.tier_3.shift_ball_ancient_gigaton": "Ancient Gigaton Shift Ball",
   "item.cobblemizer.shift_ball.tier_3.shift_ball_ancient_jet": "Ancient Jet Shift Ball",
   "item.cobblemizer.shift_ball.tier_3.shift_ball_ancient_ultra": "Ancient Ultra Shift Ball",
+
   "item.cobblemizer.shift_ball.tier_3.shift_ball_dusk": "Dusk Shift Ball",
   "item.cobblemizer.shift_ball.tier_3.shift_ball_love": "Love Shift Ball",
   "item.cobblemizer.shift_ball.tier_3.shift_ball_luxury": "Luxury Shift Ball",
@@ -91,10 +93,11 @@
 
   // tier 5 balls
   "item.cobblemizer.shift_ball.tier_5.shift_ball_ancient_origin": "Ancient Origin Shift Ball",
+
   "item.cobblemizer.shift_ball.tier_5.shift_ball_cherish": "Cherish Shift Ball",
   "item.cobblemizer.shift_ball.tier_5.shift_ball_master": "Master Shift Ball",
 
-  // ShinyItem
+  // shiny items
   "item.cobblemizer.shiny.shiny_capsule": "Shiny Capsule",
   "item.cobblemizer.shiny.shiny_crystal": "Shiny Crystal",
   "item.cobblemizer.shiny.shiny_fluid": "Shiny Fluid",

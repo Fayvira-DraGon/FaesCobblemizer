@@ -17,6 +17,9 @@
   "entrypoints": {
     "main": [
       "github.fayvira.fabric.cobblemizer.Cobblemizer"
+    ],
+    "client": [
+      "github.fayvira.fabric.cobblemizer.Cobblemizer"
     ]
   },
   "mixins": [ ],

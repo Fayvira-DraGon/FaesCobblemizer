@@ -46,27 +46,31 @@ class FriendshipCubeItem(
     stack: ItemStack,
     pokemon: Pokemon
   ): TypedActionResult<ItemStack> {
-    try {
-      maxFriendship = config.maxPokemonFriendship
-    } catch (e: Exception) {
-      LOGGER.info("applyToPokemon - config.maxPokemonFriendship: ${e.message ?: "null"}")
-    }
+    if (!player.world.isClient) {
+      try {
+        maxFriendship = config.maxPokemonFriendship
+      } catch (e: Exception) {
+        LOGGER.info("applyToPokemon - config.maxPokemonFriendship: ${e.message ?: "null"}")
+      }
 
-    val newFriendship: Int = if (friendship == 0) {
-      val random: Int = (1..<(maxFriendship ?: 255)).random()
-      if (random >= pokemon.friendship) random + 1  else random
-    } else friendship.coerceIn(1..(maxFriendship ?: 255))
-    return if (newFriendship == pokemon.friendship) {
-      player.sendMessage(Text.of("Pokémon's Friendeship is already $newFriendship"))
-      pokemon.entity?.playSound(failure, 1F, 1F)
-      pass(stack)
-    } else {
-      pokemon.setFriendship(newFriendship)
-      player.sendMessage(Text.of("Pokémon's Friendeship is now $newFriendship"))
-      pokemon.entity?.playSound(success, 1F, 1F)
-      stack.decrementUnlessCreative(1, player)
-      success(stack)
+      val newFriendship: Int = if (friendship == 0) {
+        val random: Int = (1..<(maxFriendship ?: 255)).random()
+        if (random >= pokemon.friendship) random + 1  else random
+      } else friendship.coerceIn(1..(maxFriendship ?: 255))
+
+      if (newFriendship == pokemon.friendship) {
+        player.sendMessage(Text.of("Pokémon's Friendeship is already $newFriendship"))
+        pokemon.entity?.playSound(failure, 1F, 1F)
+        return pass(stack)
+      } else {
+        pokemon.setFriendship(newFriendship)
+        player.sendMessage(Text.of("Pokémon's Friendeship is now $newFriendship"))
+        pokemon.entity?.playSound(success, 1F, 1F)
+        stack.decrementUnlessCreative(1, player)
+        return success(stack)
+      }
     }
+    return pass(stack)
   }
 
   override fun canUseOnPokemon(stack: ItemStack, pokemon: Pokemon): Boolean = pokemon.isPlayerOwned()

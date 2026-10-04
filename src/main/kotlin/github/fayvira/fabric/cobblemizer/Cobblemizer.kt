@@ -4,15 +4,15 @@ import com.cobblemon.mod.common.Cobblemon.config
 import github.fayvira.fabric.cobblemizer.component.DataComponents
 import github.fayvira.fabric.cobblemizer.component.DataComponents.SPECIES_COMPONENT
 import github.fayvira.fabric.cobblemizer.item.Items
-import github.fayvira.fabric.cobblemizer.item.Items.SHINY_CAPSULE
+import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.api.ModInitializer
-import net.minecraft.client.item.ModelPredicateProviderRegistry.register
+import net.minecraft.client.item.ModelPredicateProviderRegistry
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 import org.apache.logging.log4j.LogManager.getLogger
 import org.apache.logging.log4j.Logger
 
-class Cobblemizer : ModInitializer {
+class Cobblemizer : ModInitializer, ClientModInitializer {
 
   override fun onInitialize() {
     // Register data components
@@ -30,8 +30,10 @@ class Cobblemizer : ModInitializer {
     } catch (e: Exception) {
       LOGGER.info("onInitialize - config.maxPokemonLevel: ${e.message ?: (maxLevel ?: "null")}")
     }
+  }
 
-    register(SHINY_CAPSULE, Identifier.of(MOD_ID, "filled")) { stack: ItemStack, _, _, _ -> if (stack.get(SPECIES_COMPONENT) != null) 1F else 0F }
+  override fun onInitializeClient() {
+    ModelPredicateProviderRegistry.register(Items.SHINY_CAPSULE, Identifier.of(MOD_ID, "filled")) { stack: ItemStack, _, _, _ -> if (stack.getOrDefault(SPECIES_COMPONENT, null) != null) 1f else 0f }
   }
 
   companion object {

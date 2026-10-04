@@ -1,5 +1,6 @@
 val deleteFiles by tasks.registering(Delete::class) {
-  delete(/* ...targets = */file(".idea/runConfigurations"))
+  description = "delete existing configuration"
+  delete(file(".idea/runConfigurations"))
 }
 
 tasks.named("ideaSyncTask") {
@@ -8,9 +9,9 @@ tasks.named("ideaSyncTask") {
 
 plugins {
   id("java")
-  id("dev.architectury.loom") version ("1.10-SNAPSHOT")
+  id("dev.architectury.loom") version ("1.13-SNAPSHOT")
   id("architectury-plugin") version ("3.4-SNAPSHOT")
-  kotlin("jvm") version "2.2.10"
+  kotlin("jvm") version "2.3.10"
 }
 
 group = "${project.property("mod_group")}"
@@ -22,6 +23,12 @@ java {
   sourceCompatibility = JavaVersion.toVersion((project.property("java_version") as String).toInt())
   targetCompatibility = JavaVersion.toVersion((project.property("java_version") as String).toInt())
 }
+
+// fabricApi {
+//   configureDataGeneration {
+//     client = true
+//   }
+// }
 
 kotlin {
   compilerOptions {
@@ -49,9 +56,14 @@ loom {
       property("mixin.dumpTargetOnFailure", "true")
       property("devauth.enabled", "true") // devauth: enable
       property("devauth.account", "main") // account type: minecraft
+      property("mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg") //emi
       property("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE") // see individual untranslated item tags
       programArg("--width=${project.property("window_width")}")
       programArg("--height=${project.property("window_height")}")
+      ideConfigGenerated(true)
+    }
+    named("server") {
+      property("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
       ideConfigGenerated(true)
     }
   }
@@ -59,8 +71,10 @@ loom {
 
 repositories {
   mavenCentral()
-  maven("https://api.modrinth.com/maven") { name = "Modrinth: Cobbreeding"}
+  // maven("https://api.modrinth.com/maven") { name = "Modrinth"}
   maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/") { name = "GeckoLib"; content { includeGroup("software.bernie.geckolib") }; }
+  // maven("https://maven.architectury.dev/dev/architectury/architectury-fabric") { name = "Architectury" }
+  // maven("https://maven.bawnorton.com/releases")  { name = "MixinSquared" }
   maven("https://maven.impactdev.net/repository/development/") { name = "Cobblemon" }
   maven("https://oss.sonatype.org/content/repositories/snapshots") { name = "Cobblemon" }
   maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1") { name = "DevAuth" }
@@ -73,19 +87,17 @@ dependencies {
   mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
   modImplementation("net.fabricmc:fabric-loader:${project.property("fabric_loader_version")}")
 
-  modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_api_version")}")
+  modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_api_version")}")
   modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${project.property("devauth_version")}")
-  modImplementation(fabricApi.module("${project.property("fabric_command_api_version")}", "${project.property("fabric_api_version")}"))
+  modCompileOnly(fabricApi.module("${project.property("fabric_command_api_version")}", "${project.property("fabric_api_version")}"))
   modImplementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_version")}")
 
-  modImplementation("com.cobblemon:fabric:${project.property("cobblemon_version")}-sources")
+  // modCompileOnly("com.cobblemon:fabric:${project.property("cobblemon_version")}-sources")
   modImplementation("com.cobblemon:fabric:${project.property("cobblemon_version")}")
 
   // modImplementation("io.wispforest:owo-lib:${project.property("owo_version")}")
   // annotationProcessor("io.wispforest:owo-lib:${project.property("owo_version")}")
   // include("io.wispforest:owo-sentinel:${project.property("owo_version")}")
-
-  modCompileOnly("maven.modrinth:cobbreeding:${project.property("cobbreeding_version")}") // cobbreeding
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:${project.property("junit-jupiter-api_version")}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${project.property("junit-jupiter-engine_version")}")
