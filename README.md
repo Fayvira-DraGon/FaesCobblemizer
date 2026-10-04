@@ -1,5 +1,5 @@
 ## Fae's Cobblemizer Redux (Fabric)
-A Cobblemon add-on mod that gives the player a variety of items to directly modify a Pokémon's statistics.
+Adds items that allow players to manipulate various stats and aesthetic characteristics of Pokémon within the game.
 
 ~~Unofficial (Fabric-only) 1.21.1 port of~~ Inspired by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/Dragomordor">Dragomordor</a>'s [Cobblemizer](https://modrinth.com/project/x84daeIA) add-on for Cobblemon version 1.4.1.
 
